@@ -1,5 +1,5 @@
 import unittest
-from maker import data
+from control import data
 
 TESTS = 'a', ['b', 1], True, None, {},
 

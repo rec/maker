@@ -1,7 +1,7 @@
 import importlib, os, setuptools, subprocess, sys
 
-NAME = 'maker'
-OWNER = 'maker'
+NAME = 'control'
+OWNER = 'timedata-org'
 
 VERSION_FILE = os.path.join(os.path.dirname(__file__), NAME, 'VERSION')
 VERSION = open(VERSION_FILE).read().strip()
@@ -40,9 +40,9 @@ if sversion < SETUPTOOLS_VERSION:
     raise ValueError(SETUPTOOLS_ERROR % (sversion, SETUPTOOLS_VERSION))
 
 setuptools.setup(
-    name='maker',
+    name='control',
     version=VERSION,
-    description='maker - make all the things',
+    description='control all the things',
     author='Tom Ritchford',
     author_email='tom@swirly.com',
     url=URL,

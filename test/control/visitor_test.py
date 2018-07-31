@@ -1,5 +1,5 @@
 import unittest
-from maker import visitor
+from control import visitor
 
 
 class VisitorTest(unittest.TestCase):
