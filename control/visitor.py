@@ -4,16 +4,16 @@ TYPENAME = 'typename'
 
 
 class Visitor:
-    def __init__(self, desc, name='', parent=None):
+    def __init__(self, desc, key='', parent=None):
         self.desc = desc
-        self.name = name
+        self.key = key
         self.parent = parent
 
     def visit(self):
         self.pre()
 
-        for child_name, child_desc in self.children():
-            self.child(child_desc, child_name).visit()
+        for child_key, child_desc in self.children():
+            self.child(child_desc, child_key).visit()
 
         self.post()
 
@@ -26,8 +26,8 @@ class Visitor:
     def children(self):
         return ()
 
-    def child(self, child_desc, child_name):
-        return self.__class__(child_desc, child_name, self.desc)
+    def child(self, child_desc, child_key):
+        return self.__class__(child_desc, child_key, self.desc)
 
 
 class DictVisitor(Visitor):

@@ -10,10 +10,10 @@ class VisitorTest(unittest.TestCase):
 
         class Visitor(visitor.DictVisitor):
             def pre(self):
-                results.append(('pre', self.name, self.desc))
+                results.append(('pre', self.key, self.desc))
 
             def post(self):
-                results.append(('post', self.name, self.desc))
+                results.append(('post', self.key, self.desc))
 
         Visitor(DATA).visit()
         print(*results, sep=',\n    ')

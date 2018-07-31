@@ -6,7 +6,7 @@ file.
 
 # Three types of data:
 
-* simple - strings, lists, dictionaries, `True`, `None`, etc.
+* simple - strings, lists, dictionaries, booleans, `None`, numbers
 * class - represents a Python class that gets constructed
 * container class - a Python class that contains other class data within it
 
