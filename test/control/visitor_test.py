@@ -3,26 +3,6 @@ from control import visitor
 
 
 class VisitorTest(unittest.TestCase):
-    maxDiff = 10000
-
-    def test_all(self):
-        results = []
-
-        class Visitor(visitor.DictVisitor):
-            def pre(self):
-                results.append(('pre', self.key, self.desc))
-
-            def post(self):
-                results.append(('post', self.key, self.desc))
-
-        Visitor(DATA).visit()
-        print(*results, sep=',\n    ')
-        self.assertEquals(results, EXPECTED)
-
-
-class NewVisitorTest(unittest.TestCase):
-    maxDiff = 10000
-
     def test_trivial(self):
         visitor.visit(DATA)
 
@@ -36,7 +16,6 @@ class NewVisitorTest(unittest.TestCase):
             results.append(('post', key, node))
 
         visitor.visit(DATA, pre, post)
-        print(*results, sep=',\n    ')
         self.assertEquals(results, EXPECTED)
 
 
