@@ -20,6 +20,26 @@ class VisitorTest(unittest.TestCase):
         self.assertEquals(results, EXPECTED)
 
 
+class NewVisitorTest(unittest.TestCase):
+    maxDiff = 10000
+
+    def test_trivial(self):
+        visitor.visit(DATA)
+
+    def test_all(self):
+        results = []
+
+        def pre(node, key, parent):
+            results.append(('pre', key, node))
+
+        def post(node, key, parent):
+            results.append(('post', key, node))
+
+        visitor.visit(DATA, pre, post)
+        print(*results, sep=',\n    ')
+        self.assertEquals(results, EXPECTED)
+
+
 DATA = {
     'foo': 'bar',
     'baz': [0, True, None, 3.5],
