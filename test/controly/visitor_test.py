@@ -3,6 +3,8 @@ from controly import visitor
 
 
 class VisitorTest(unittest.TestCase):
+    maxDiff = 10000
+
     def test_trivial(self):
         visitor.visit(DATA)
 
@@ -15,7 +17,7 @@ class VisitorTest(unittest.TestCase):
         def post(node, key, parent):
             results.append(('post', key, node))
 
-        visitor.visit(DATA, pre, post)
+        visitor.visit(DATA, post, pre)
         self.assertEquals(results, EXPECTED)
 
 

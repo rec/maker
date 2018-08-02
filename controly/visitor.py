@@ -1,27 +1,27 @@
 import traceback
 
 
-def simple_children(node):
-    if isinstance(node, dict):
-        return node.items()
+def simple_children(value):
+    if isinstance(value, dict):
+        return value.items()
 
-    if isinstance(node, (tuple, list)):
-        return enumerate(node)
+    if isinstance(value, (tuple, list)):
+        return enumerate(value)
 
     return ()
 
 
-def no_visit(node, key, parent):
+def no_visit(value, key, parent):
     pass
 
 
-def visit(node, pre=no_visit, post=no_visit, children=simple_children, **kwds):
-    def recurse(node, key, parent):
-        pre(node, key, parent, **kwds)
+def visit(project, post=no_visit, pre=no_visit, children=simple_children, **kw):
+    def recurse(value, key, parent):
+        pre(value, key, parent, **kw)
 
-        for child_key, child_node in children(node):
-            recurse(child_node, child_key, node)
+        for child_key, child_value in children(value):
+            recurse(child_value, child_key, value)
 
-        post(node, key, parent, **kwds)
+        post(value, key, parent, **kw)
 
-    recurse(node, '', None)
+    recurse(project, '', None)

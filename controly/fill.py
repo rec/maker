@@ -1,29 +1,56 @@
-import traceback
-
+import functools, loady, traceback
+from . import visitor
 
 OBJECT = '_object'
 CLASS = '_class'
 ERROR = '_error'
 TYPENAME = 'typename'
 NOTHING = object()
+ATTRIBUTES = 'CONTROLY_ATTRIBUTES'
 
 
-def pre(node, key, parent, class_loader):
-    if key == TYPENAME:
+def fill(project):
+    visitor.visit(project, _fill_class)
+    visitor.visit(project, _construct)
+    visitor.visit(project, _set_attributes)
+
+
+def _errors(fn):
+    @functools.wraps(fn)
+    def wrapper(value, key, parent, **kwds):
         try:
-            parent[CLASS] = class_loader(node)
+            fn(value, key, parent, **kwds)
         except:
-            parent[ERROR] = traceback.format_exc()
+            error = fn.__name__, value, key, parent, traceback.format_exc()
+            parent.setdefault(ERROR, []).append(error)
+
+    return wrapper
 
 
-def fill_classes(class_loader):
-    pass
+@_errors
+def _fill_class(value, key, parent):
+    if key == TYPENAME:
+        parent[CLASS] = loady.code.load_code(value)
 
 
-def no_op(*args, **kwds):
-    pass
+@_errors
+def _construct(value, key, parent):
+    if key == CLASS:
+        parent[OBJECT] = value()
 
 
-def _call_optional_method(object, name, *args, default=no_op, **kwds):
-    method = getattr(object, name, default)
-    return method(*args, **kwds)
+@_errors
+def _set_attributes(value, key, parent):
+    if not parent or key == TYPENAME or OBJECT not in parent:
+        return
+
+    attributes = getattr(parent, ATTRIBUTES, None)
+    if not (attributes is None or key in attributes):
+        raise ValueError('Unknown attribute ' + key)
+
+    if isinstance(attributes, dict):
+        attr = attributes[key]
+        if callable(attr):
+            value = attr(value)
+
+    setattr(parent[OBJECT], key, value)
