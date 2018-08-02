@@ -1,6 +1,4 @@
-OBJECT = '_object'
-CLASS = '_class'
-TYPENAME = 'typename'
+import traceback
 
 
 def simple_children(node):
@@ -13,17 +11,17 @@ def simple_children(node):
     return ()
 
 
-def visit_none(node, key, parent):
+def no_visit(node, key, parent):
     pass
 
 
-def visit(node, pre=visit_none, post=visit_none, children=simple_children):
+def visit(node, pre=no_visit, post=no_visit, children=simple_children, **kwds):
     def recurse(node, key, parent):
-        pre(node, key, parent)
+        pre(node, key, parent, **kwds)
 
         for child_key, child_node in children(node):
             recurse(child_node, child_key, node)
 
-        post(node, key, parent)
+        post(node, key, parent, **kwds)
 
     recurse(node, '', None)

@@ -24,16 +24,11 @@ There are potential customization points at five places.
 These ones will be class methods
 
 1. pre_construction - rewrite the dictionary
-2. construction - before any child is created
+2. at construction - before any child is created or public attribute is set.
 
 -- after this, we're an object
 
-3. post_child - after every children are created
-4. post_parent - after your parents has created all your siblings
-5. ready - right before we're ready to start
-
-
-Should I rename this to "control"?
-
-
-Other tasks we need to do:
+3. post-attribute - after all the attributes have been set
+4. post-child - after all children are created
+5. post-parent - after your parent has created all your siblings
+6. ready - right before we're ready to start
