@@ -9,13 +9,13 @@ class Bar:
 
 
 class BazSimple(Bar):
-    CONTROL_ATTRIBUTES = ['foo', 'bar']
+    CONTROLY_ATTRIBUTES = ['foo', 'bar']
 
 
 class Baz(Bar):
-    CONTROL_ATTRIBUTES = {
+    CONTROLY_ATTRIBUTES = {
         'foo': True,
-        'bar': lambda x: 1 + x
+        'bar': lambda x: print('!!!') or (1 + x)
     }
 
 
@@ -37,6 +37,7 @@ class FillTest(unittest.TestCase):
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=BazSimple, _object=BazSimple())
         fill.fill(a)
+        print('!!!!', a)
         self.assertEquals(a, expected)
         self.assertEquals(a['_object'].foo, 'foo')
         self.assertEquals(a['_object'].bar, 2)

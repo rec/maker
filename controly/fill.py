@@ -7,6 +7,7 @@ ERROR = '_error'
 TYPENAME = 'typename'
 NOTHING = object()
 ATTRIBUTES = 'CONTROLY_ATTRIBUTES'
+RAISE = True
 
 
 def fill(project):
@@ -21,6 +22,9 @@ def _errors(fn):
         try:
             fn(value, key, parent, **kwds)
         except:
+            if RAISE:
+                raise
+
             error = fn.__name__, value, key, parent, traceback.format_exc()
             parent.setdefault(ERROR, []).append(error)
 
@@ -41,11 +45,14 @@ def _construct(value, key, parent):
 
 @_errors
 def _set_attributes(value, key, parent):
-    if not parent or key == TYPENAME or OBJECT not in parent:
+    if not parent or key == TYPENAME or (
+            OBJECT not in parent or key.startswith('_')):
         return
 
-    attributes = getattr(parent, ATTRIBUTES, None)
-    if not (attributes is None or key in attributes):
+    cls = parent[CLASS]
+
+    attributes = getattr(cls, ATTRIBUTES, None)
+    if not (attributes is None or key.startswith('_') or key in attributes):
         raise ValueError('Unknown attribute ' + key)
 
     if isinstance(attributes, dict):
