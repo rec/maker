@@ -1,5 +1,5 @@
 import unittest
-from control import data
+from controly import data
 
 TESTS = 'a', ['b', 1], True, None, {},
 

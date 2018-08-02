@@ -1,5 +1,5 @@
 import unittest
-from control import visitor
+from controly import visitor
 
 
 class VisitorTest(unittest.TestCase):

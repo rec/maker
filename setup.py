@@ -1,6 +1,6 @@
 import importlib, os, setuptools, subprocess, sys
 
-NAME = 'control'
+NAME = 'controly'
 OWNER = 'timedata-org'
 
 VERSION_FILE = os.path.join(os.path.dirname(__file__), NAME, 'VERSION')
@@ -40,7 +40,7 @@ if sversion < SETUPTOOLS_VERSION:
     raise ValueError(SETUPTOOLS_ERROR % (sversion, SETUPTOOLS_VERSION))
 
 setuptools.setup(
-    name='control',
+    name='controly',
     version=VERSION,
     description='control all the things',
     author='Tom Ritchford',
