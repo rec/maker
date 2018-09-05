@@ -15,7 +15,7 @@ class BazSimple(Bar):
 class Baz(Bar):
     TIMEDATA_ATTRIBUTES = {
         'foo': True,
-        'bar': lambda x: print('!!!') or (1 + x)
+        'bar': lambda x: 1 + x
     }
 
 

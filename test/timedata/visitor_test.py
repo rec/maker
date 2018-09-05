@@ -1,4 +1,4 @@
-import unittest
+import collections, unittest
 from timedata import visitor
 
 
@@ -21,13 +21,11 @@ class VisitorTest(unittest.TestCase):
         self.assertEquals(results, EXPECTED)
 
 
-DATA = {
-    'foo': 'bar',
-    'baz': [0, True, None, 3.5],
-    'bing': {
-        'bong': {}
-    }
-}
+DATA = collections.OrderedDict((
+    ('foo', 'bar'),
+    ('baz', [0, True, None, 3.5]),
+    ('bing', {'bong': {}}),
+))
 
 EXPECTED = [
     ('pre', '', DATA),
