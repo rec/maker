@@ -1,5 +1,5 @@
 import unittest
-from controly import visitor
+from timedata import visitor
 
 
 class VisitorTest(unittest.TestCase):
