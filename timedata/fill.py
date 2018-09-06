@@ -21,33 +21,33 @@ def _errors(fn):
     A decorator that wraps a function
     """
     @functools.wraps(fn)
-    def wrapper(value, key, parent):
+    def wrapper(parent, key, node):
         try:
-            fn(value, key, parent)
+            fn(parent, key, node)
         except:
             if RAISE:
                 raise
 
-            error = fn.__name__, value, key, parent, traceback.format_exc()
+            error = fn.__name__, parent, key, node, traceback.format_exc()
             parent.setdefault(ERROR, []).append(error)
 
     return wrapper
 
 
 @_errors
-def _fill_class(value, key, parent):
+def _fill_class(parent, key, node):
     if key == TYPENAME:
-        parent[CLASS] = loady.code.load_code(value)
+        parent[CLASS] = loady.code.load_code(node)
 
 
 @_errors
-def _construct(value, key, parent):
+def _construct(parent, key, node):
     if key == CLASS:
-        parent[OBJECT] = value()
+        parent[OBJECT] = node()
 
 
 @_errors
-def _set_attributes(value, key, parent):
+def _set_attributes(parent, key, node):
     if not parent or key == TYPENAME or (
             OBJECT not in parent or key.startswith('_')):
         return
@@ -61,6 +61,6 @@ def _set_attributes(value, key, parent):
     if isinstance(attributes, dict):
         attr = attributes[key]
         if callable(attr):
-            value = attr(value)
+            node = attr(node)
 
-    setattr(parent[OBJECT], key, value)
+    setattr(parent[OBJECT], key, node)
