@@ -6,7 +6,7 @@ CLASS = '_class'
 ERROR = '_error'
 TYPENAME = 'typename'
 NOTHING = object()
-ATTRIBUTES = 'CONTROLY_ATTRIBUTES'
+ATTRIBUTES = 'TIMEDATA_ATTRIBUTES'
 RAISE = True
 
 
@@ -17,10 +17,13 @@ def fill(project):
 
 
 def _errors(fn):
+    """
+    A decorator that wraps a function
+    """
     @functools.wraps(fn)
-    def wrapper(value, key, parent, **kwds):
+    def wrapper(value, key, parent):
         try:
-            fn(value, key, parent, **kwds)
+            fn(value, key, parent)
         except:
             if RAISE:
                 raise

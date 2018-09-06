@@ -15,7 +15,7 @@ class BazSimple(Bar):
 class Baz(Bar):
     TIMEDATA_ATTRIBUTES = {
         'foo': True,
-        'bar': lambda x: 1 + x
+        'bar': lambda x: 1000 + x
     }
 
 
@@ -48,4 +48,4 @@ class FillTest(unittest.TestCase):
         fill.fill(a)
         self.assertEquals(a, expected)
         self.assertEquals(a['_object'].foo, 'foo')
-        self.assertEquals(a['_object'].bar, 2)
+        self.assertEquals(a['_object'].bar, 1002)
