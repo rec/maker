@@ -15,14 +15,13 @@ def no_visit(value, key, parent):
     pass
 
 
-def visit(project, post=no_visit, pre=no_visit, children=simple_children,
-          **kwds):
+def visit(project, post=no_visit, pre=no_visit, children=simple_children):
     def recurse(value, key, parent):
-        pre(value, key, parent, **kwds)
+        pre(value, key, parent)
 
         for child_key, child_value in list(children(value)):
             recurse(child_value, child_key, value)
 
-        post(value, key, parent, **kwds)
+        post(value, key, parent)
 
     recurse(project, '', None)
