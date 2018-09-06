@@ -18,7 +18,8 @@ def fill(project):
 
 def _errors(fn):
     """
-    A decorator that wraps a function
+    A decorator that wraps a function and catches exceptions, storing their
+    value with an entry in the parent dictionary called `'_error'`
     """
     @functools.wraps(fn)
     def wrapper(parent, key, node):
