@@ -29,49 +29,10 @@ convenient but prevents the creation of dictionaries like
 """
 
 import json
+from . import segment
 
 
 class Address:
-    class Segment:
-        def __init__(self, name):
-            self.name = name
-
-        def set(self, root, *value):
-            self._set(root, (value[0] if len(value) == 1 else value))
-
-    class Attribute(Segment):
-        def get(self, root):
-            return getattr(root, self.name)
-
-        def _set(self, root, value):
-            setattr(root, self.name, value)
-
-        def __str__(self):
-            return '.%s' % self.name
-
-    class Index(Segment):
-        def get(self, root):
-            return root[self.name]
-
-        def _set(self, root, value):
-            root[self.name] = value
-
-        def __str__(self):
-            return '[%s]' % self.name
-
-    class Call(Segment):
-        def __init__(self):
-            pass
-
-        def get(self, root):
-            return root()
-
-        def set(self, root, *value):
-            root(*value)
-
-        def __str__(self):
-            return '()'
-
     def __init__(self, name=None):
         if not name:
             self.segments = self.assignment = ()
@@ -94,7 +55,7 @@ class Address:
             self.assignment = ()
             return
 
-        if isinstance(self.segments[-1], Address.Call):
+        if isinstance(self.segments[-1], segment.Call):
             raise ValueError('Cannot assign to a call operation')
 
         def number(s):
@@ -131,11 +92,11 @@ def _generate(s):
         # Extract () pairs from start and finish of a string
         before, after = [], []
         while p.startswith('()'):
-            before.append(Address.Call())
+            before.append(segment.Call())
             p = p[2:]
 
         while p.endswith('()'):
-            after.append(Address.Call())
+            after.append(segment.Call())
             p = p[:-2]
 
         return before, p, after
@@ -166,7 +127,7 @@ def _generate(s):
             yield from before
 
         elif head:
-            yield Address.Attribute(head)
+            yield segment.Attribute(head)
             yield from after
 
         elif i:
@@ -186,5 +147,5 @@ def _generate(s):
                 raise ValueError
 
             index = int(index) if index.isdigit() else index
-            yield Address.Index(index)
+            yield segment.Index(index)
             yield from after
