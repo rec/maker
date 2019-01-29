@@ -1,5 +1,5 @@
 import unittest
-from timedata.address import Address
+from timedata.address.address import Address
 
 
 class AddressTest(unittest.TestCase):
