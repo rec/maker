@@ -1,6 +1,6 @@
 import importlib, os, setuptools, subprocess, sys
 
-NAME = 'controly'
+NAME = 'timedata'
 OWNER = 'timedata-org'
 
 VERSION_FILE = os.path.join(os.path.dirname(__file__), NAME, 'VERSION')

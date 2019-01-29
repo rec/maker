@@ -10,7 +10,17 @@ other sort of thing)
 """
 
 
-def visit(root, visitor_fn, pre=False, get_children=None):
+def simple_children(node):
+    if isinstance(node, dict):
+        return node.items()
+
+    if isinstance(node, (tuple, list)):
+        return enumerate(node)
+
+    return ()
+
+
+def visit(root, visitor, pre=False, get_children=simple_children):
     """
     Call a function on each node in the tree.
 
@@ -27,24 +37,11 @@ def visit(root, visitor_fn, pre=False, get_children=None):
 
     """
     def recurse(parent, key, node):
-        if pre:
-            visitor_fn(parent, key, node)
+        pre and visitor(parent, key, node)
 
         for child_key, child_node in list(get_children(node)):
             recurse(node, child_key, child_node)
 
-        if not pre:
-            visitor_fn(parent, key, node)
+        pre or visitor(parent, key, node)
 
-    get_children = get_children or simple_children
-    recurse(None, '', root)
-
-
-def simple_children(node):
-    if isinstance(node, dict):
-        return node.items()
-
-    if isinstance(node, (tuple, list)):
-        return enumerate(node)
-
-    return ()
+    recurse(None, None, root)

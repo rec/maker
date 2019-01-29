@@ -31,7 +31,7 @@ DATA = collections.OrderedDict((
 ))
 
 PRE = [
-    ('', DATA),
+    (None, DATA),
     ('foo', 'bar'),
     ('baz', [0, True, None, 3.5]),
     (0, 0),
@@ -51,5 +51,5 @@ POST = [
     ('baz', [0, True, None, 3.5]),
     ('bong', {}),
     ('bing', {'bong': {}}),
-    ('', DATA),
+    (None, DATA),
 ]
