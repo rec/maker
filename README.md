@@ -61,5 +61,3 @@ Classes with an empty constructor, setters, and then an init() method or functio
 2. Constructor-only
 
     a = Class(foo=1, bar='hello')
-
-ADDRESSES!

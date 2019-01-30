@@ -24,7 +24,7 @@ class FillTest(unittest.TestCase):
         fill.fill({})
 
     def test_simple(self):
-        a = {'typename': 'test.timedata.fill_test.Bar', 'foo': 'foo', 'bar': 2}
+        a = {'_': 'test.timedata.fill_test.Bar', 'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=Bar, _object=Bar())
 
         fill.fill(a)
@@ -33,7 +33,7 @@ class FillTest(unittest.TestCase):
         self.assertEquals(a['_object'].bar, 2)
 
     def test_attributes_simple(self):
-        a = {'typename': 'test.timedata.fill_test.BazSimple',
+        a = {'_': 'test.timedata.fill_test.BazSimple',
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=BazSimple, _object=BazSimple())
         fill.fill(a)
@@ -42,7 +42,7 @@ class FillTest(unittest.TestCase):
         self.assertEquals(a['_object'].bar, 2)
 
     def test_attributes(self):
-        a = {'typename': 'test.timedata.fill_test.Baz',
+        a = {'_': 'test.timedata.fill_test.Baz',
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=Baz, _object=Baz())
         fill.fill(a)

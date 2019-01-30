@@ -6,7 +6,7 @@ An address description is a string looking like:
 
 ::
 
-    .foo.bar[32][5][baz].bang()
+    foo.bar[32][5][baz].bang()
 
 which would mean
 

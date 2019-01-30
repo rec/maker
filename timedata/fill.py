@@ -4,7 +4,7 @@ from . import visitor
 OBJECT = '_object'
 CLASS = '_class'
 ERROR = '_error'
-TYPENAME = 'typename'
+TYPENAME = '_'
 NOTHING = object()
 ATTRIBUTES = 'TIMEDATA_ATTRIBUTES'
 RAISE = True

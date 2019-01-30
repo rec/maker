@@ -85,6 +85,7 @@ class AddressTest(unittest.TestCase):
         self.assertEqual(len(address.segments), 6)
         address.set(self, 23)
         self.assertEqual(self.call_result, 23)
+        del self.call_result
 
     def test_compound_error(self):
         address = Address('attr1[0][test][1][heck].attr2.attr3')
