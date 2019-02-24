@@ -28,24 +28,24 @@ class FillTest(unittest.TestCase):
         expected = dict(a, _class=Bar, _object=Bar())
 
         fill.fill(a)
-        self.assertEquals(a, expected)
-        self.assertEquals(a['_object'].foo, 'foo')
-        self.assertEquals(a['_object'].bar, 2)
+        self.assertEqual(a, expected)
+        self.assertEqual(a['_object'].foo, 'foo')
+        self.assertEqual(a['_object'].bar, 2)
 
     def test_attributes_simple(self):
         a = {'_': 'test.timedata.fill_test.BazSimple',
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=BazSimple, _object=BazSimple())
         fill.fill(a)
-        self.assertEquals(a, expected)
-        self.assertEquals(a['_object'].foo, 'foo')
-        self.assertEquals(a['_object'].bar, 2)
+        self.assertEqual(a, expected)
+        self.assertEqual(a['_object'].foo, 'foo')
+        self.assertEqual(a['_object'].bar, 2)
 
     def test_attributes(self):
         a = {'_': 'test.timedata.fill_test.Baz',
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=Baz, _object=Baz())
         fill.fill(a)
-        self.assertEquals(a, expected)
-        self.assertEquals(a['_object'].foo, 'foo')
-        self.assertEquals(a['_object'].bar, 1002)
+        self.assertEqual(a, expected)
+        self.assertEqual(a['_object'].foo, 'foo')
+        self.assertEqual(a['_object'].bar, 1002)

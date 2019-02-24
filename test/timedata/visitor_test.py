@@ -12,7 +12,7 @@ class VisitorTest(unittest.TestCase):
             results.append((key, node))
 
         visitor.visit(DATA, visitor_fn, pre=True)
-        self.assertEquals(results, PRE)
+        self.assertEqual(results, PRE)
 
     def test_post(self):
         results = []
@@ -21,7 +21,7 @@ class VisitorTest(unittest.TestCase):
             results.append((key, node))
 
         visitor.visit(DATA, visitor_fn)
-        self.assertEquals(results, POST)
+        self.assertEqual(results, POST)
 
 
 DATA = collections.OrderedDict((

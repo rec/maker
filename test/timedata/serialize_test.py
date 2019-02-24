@@ -9,4 +9,4 @@ class SerializeTest(unittest.TestCase):
         for t in TESTS:
             dump = serialize.dump(t)
             load = serialize.load(dump)
-            self.assertEquals(load, t)
+            self.assertEqual(load, t)
