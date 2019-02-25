@@ -1,4 +1,4 @@
-import importlib, os
+import importlib, os, warnings
 
 
 def _split_all(path):
@@ -26,16 +26,22 @@ def _all_imports(root, project_name):
                 yield '%s.%s' % (root_import, f[:-3])
 
 
-def import_all(root, project_name, blacklist):
+def import_all(root, project_name, blacklist, dont_warn=()):
     """Import all files and directories """
     successes, failures = [], []
+
+    def imp(name):
+        try:
+            importlib.import_module(name)
+        except Exception as e:
+            failures.append((name, e))
+        else:
+            successes.append(name)
+
     for name in _all_imports(root, project_name):
         if name not in blacklist:
-            try:
-                importlib.import_module(name)
-            except Exception as e:
-                failures.append((name, e))
-            else:
-                successes.append(name)
+            warnings.simplefilter('ignore' if name in dont_warn else 'error')
+            imp(name)
+            warnings.filters.pop(0)
 
     return successes, failures
