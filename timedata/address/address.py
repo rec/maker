@@ -32,37 +32,34 @@ import json
 from . import generate, segment
 
 
+def number(s):
+    try:
+        return json.loads(s)
+    except:
+        return s.strip()
+
+
 class Address:
-    def __init__(self, name=None):
-        if not name:
-            self.segments = self.assignment = ()
+    def __init__(self, desc=None):
+        self.segments = self.assignment = ()
+        if not desc:
             return
 
-        self.name, *assignment = name.split('=', 1)
+        name, *assignment = desc.split('=', 1)
         assignment = assignment and assignment[0].strip()
 
-        self.name = self.name.strip()
+        name = name.strip()
 
         try:
-            self.segments = list(generate.generate(self.name))
+            self.segments = list(generate.generate(name))
         except:
-            raise ValueError('%s is not a legal address' % name)
+            raise ValueError('%s is not a legal address' % desc)
 
-        if not self.segments:
-            raise ValueError('Empty Addresses are not allowed')
-
-        if not assignment:
-            self.assignment = ()
+        if not (self.segments and assignment):
             return
 
         if isinstance(self.segments[-1], segment.Call):
             raise ValueError('Cannot assign to a call operation')
-
-        def number(s):
-            try:
-                return json.loads(s)
-            except:
-                return s
 
         self.assignment = tuple(number(s) for s in assignment.split(','))
 
@@ -70,7 +67,12 @@ class Address:
         return bool(self.segments)
 
     def __str__(self):
-        return self.name
+        name = ''.join(str(i) for i in self.segments)
+        if not self.assignment:
+            return name
+
+        assignment = ', '.join(str(i) for i in self.assignment)
+        return '%s = %s' % (name, assignment)
 
     @staticmethod
     def _get(root, address):

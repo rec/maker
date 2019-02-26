@@ -1,5 +1,5 @@
 import weakref
-from . address import number, Address
+from .. address.address import number, Address
 from . receiver import Receiver
 
 

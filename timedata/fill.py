@@ -49,14 +49,13 @@ def _construct(parent, key, node):
 
 @_errors
 def _set_attributes(parent, key, node):
-    if not parent or key == TYPENAME or (
-            OBJECT not in parent or key.startswith('_')):
+    if not parent or OBJECT not in parent or key.startswith('_'):
         return
 
     cls = parent[CLASS]
 
     attributes = getattr(cls, ATTRIBUTES, None)
-    if not (attributes is None or key.startswith('_') or key in attributes):
+    if not (attributes is None or key in attributes):
         raise ValueError('Unknown attribute ' + key)
 
     if isinstance(attributes, dict):

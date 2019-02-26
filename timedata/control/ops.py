@@ -31,7 +31,7 @@ import math, operator
 
 class Op:
     def __init__(self, op, *values):
-        if len(values) > len(OPS):
+        if len(values) >= len(OPS):
             raise KeyError('Too many arguments for ' + op)
         ops = OPS[len(values)]
 
@@ -47,7 +47,7 @@ class Op:
 
     def __str__(self):
         values = ', '.join(str(v) for v in self.values)
-        return '%s(%s)' % self.opname, values
+        return '%s(%s)' % (self.opname, values)
 
 
 class Ops:

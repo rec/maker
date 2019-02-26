@@ -29,11 +29,6 @@ def flatten(master):
     """
     result = {}
 
-    def add(value, *keys):
-        if keys in result:
-            raise ValueError('Duplicate key %s' % keys)
-        result[keys] = value
-
     def recurse(value, *keys):
         if isinstance(value, dict):
             for k, v in value.items():

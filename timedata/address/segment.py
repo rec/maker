@@ -7,6 +7,11 @@ class Segment:
 
 
 class Attribute(Segment):
+    def __init__(self, name):
+        if not name.isidentifier():
+            raise ValueError('Not a legal identifier', name)
+        super().__init__(name)
+
     def get(self, root):
         return getattr(root, self.name)
 

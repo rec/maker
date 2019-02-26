@@ -49,3 +49,7 @@ class FillTest(unittest.TestCase):
         self.assertEqual(a, expected)
         self.assertEqual(a['_object'].foo, 'foo')
         self.assertEqual(a['_object'].bar, 1002)
+
+    def test_error(self):
+        with self.assertRaises(ValueError):
+            fill.fill({'_': 'test.timedata.fill_test.Baz', 'baz': 1})

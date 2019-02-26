@@ -3,18 +3,34 @@ from timedata.address.address import Address
 
 
 class AddressTest(unittest.TestCase):
+    def _address(self, desc, expected=None):
+        address = Address(desc)
+        self.assertEqual(str(address), expected or desc)
+        return address
 
     def test_empty(self):
-        address = Address('')
+        address = self._address('')
         self.assertFalse(address)
         self.assertFalse(address.segments)
         self.assertFalse(address.assignment)
         self.assertEqual(address.get(23), 23)
         with self.assertRaises(ValueError):
             address.set(self, 23)
+        self.assertEqual(str(address), '')
+
+    def test_error(self):
+        with self.assertRaises(ValueError):
+            Address('ab[cd()]')
+        BAD = (
+            '.a.b.', '.a.bar() = 3', 'a.', 'a..b', 'a.()', 'a.[2]',
+            'a[2]b', 'a()b', 'a[()cd]', '!', '?')
+        for i in BAD:
+            with self.assertRaises(ValueError):
+                Address(i)
 
     def test_attrib(self):
-        address = Address('attr')
+        address = self._address('attr', '.attr')
+        self.assertEqual(str(address), '.attr')
         self.assertEqual(len(address.segments), 1)
         self.attr = 'bingo'
         self.assertIs(address.get(self), 'bingo')
@@ -22,7 +38,8 @@ class AddressTest(unittest.TestCase):
         self.assertIs(address.get(self), 'bang')
 
     def test_attrib_error(self):
-        address = Address('.attr')
+        address = self._address('.attr')
+        self.assertEqual(str(address), '.attr')
         with self.assertRaises(AttributeError):
             address.get(AddressTest)
 
@@ -30,7 +47,8 @@ class AddressTest(unittest.TestCase):
             address.get(0)
 
     def test_array(self):
-        address = Address('[1]')
+        address = self._address('[1]')
+        self.assertEqual(str(address), '[1]')
         self.assertEqual(len(address.segments), 1)
         data = [2, 4, 6]
         self.assertEqual(address.get(data), 4)
@@ -38,7 +56,7 @@ class AddressTest(unittest.TestCase):
         self.assertEqual(data, [2, 3, 6])
 
     def test_array_error(self):
-        address = Address('[1]')
+        address = self._address('[1]')
         with self.assertRaises(IndexError):
             address.get([0])
 
@@ -53,7 +71,9 @@ class AddressTest(unittest.TestCase):
         self.attr2 = self
         self.attr3 = 'bingo'
 
-        address = Address('.attr1[0][test][1][heck].attr2.attr3')
+        desc = '.attr1[0][test][1][heck].attr2.attr3'
+        address = self._address(desc)
+        self.assertEqual(str(address), desc)
         self.assertEqual(len(address.segments), 7)
         self.assertEqual(address.get(self), 'bingo')
         address.set(self, 'bang')
@@ -63,7 +83,7 @@ class AddressTest(unittest.TestCase):
         self.call_result = 23
 
     def test_trivial_call(self):
-        address = Address('()')
+        address = self._address('()')
         self.assertEqual(len(address.segments), 1)
         result = []
 
@@ -71,7 +91,7 @@ class AddressTest(unittest.TestCase):
         self.assertEqual(result, ['value'])
 
     def test_call(self):
-        address = Address('.call()')
+        address = self._address('.call()')
         self.assertEqual(len(address.segments), 2)
         address.set(self, 23)
         self.assertEqual(self.call_result, 23)
@@ -81,14 +101,14 @@ class AddressTest(unittest.TestCase):
 
     def test_call_complex(self):
         self.results = []
-        address = Address('.call2()[1]().call()')
+        address = self._address('.call2()[1]().call()')
         self.assertEqual(len(address.segments), 6)
         address.set(self, 23)
         self.assertEqual(self.call_result, 23)
         del self.call_result
 
     def test_compound_error(self):
-        address = Address('attr1[0][test][1][heck].attr2.attr3')
+        address = self._address('.attr1[0][test][1][heck].attr2.attr3')
 
         with self.assertRaises(AttributeError):
             address.get(self)
@@ -101,15 +121,19 @@ class AddressTest(unittest.TestCase):
             address.set(self, 2)
 
     def test_segment_start_with_index(self):
-        Address('[1]')
+        self._address('[1]')
         with self.assertRaises(ValueError):
-            Address('foo.[1]')
+            self._address('foo.[1]')
 
     def test_assignment(self):
         self.attr = None
-        Address('.attr = 1').set(self)
+        self._address('.attr = 1').set(self)
         self.assertEqual(self.attr, 1)
 
         self.attr = None
-        Address('.attr = 1, 2.5, 3').set(self)
+        self._address('.attr = 1, 2.5, 3').set(self)
         self.assertEqual(self.attr, (1, 2.5, 3))
+
+        self.attr = None
+        self._address('.attr = 1, bugs, this is 32').set(self)
+        self.assertEqual(self.attr, (1, 'bugs', 'this is 32'))
