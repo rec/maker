@@ -1,7 +1,8 @@
 import os, unittest
 from . import_all import import_all
 
-BLACKLIST = []
+IS_TRAVIS = os.getenv('TRAVIS', '').lower().startswith('t')
+BLACKLIST = ['timedata.control.keyboard'] if IS_TRAVIS else []
 DONT_WARN = ['timedata.control.keyboard']
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
