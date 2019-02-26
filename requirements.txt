@@ -1,5 +1,5 @@
-python-rtmidi  # Must be installed first
+# python-rtmidi  # Must be installed first
+# mido
 loady
 pyyaml
-mido
 pynput
