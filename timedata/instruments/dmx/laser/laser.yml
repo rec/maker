@@ -1,0 +1,31 @@
+_:
+  paths: timedata.ui.laser
+
+dmx_level:
+  - {_: .DMXLevel, channel:  1, label: A}
+  - {_: .DMXLevel, channel: 17, label: B}
+  - {_: .DMXLevel, channel: 33, label: C}
+  - {_: .DMXLevel, channel: 49, label: D}
+  - {_: .DMXLevel, channel: 65, label: E}
+  - {_: .DMXLevel, channel: 81, label: F}
+
+fader: # 6 abs/LFO faders
+  - {_: .AbsLFOFader, name: zoom, label: Zoom}
+  - {_: .AbsLFOFader, name: xrot, label: X rotation}
+  - {_: .AbsLFOFader, name: yrot, label: Y rotation}
+  - {_: .AbsLFOFader, name: zrot, label: Z rotation}
+  - {_: .AbsLFOFader, name: hpos, label: H position}
+  - {_: .AbsLFOFader, name: vpos, label: V position}
+
+selector:
+  - {_: .Selector, name: pattern}
+  - {_: .Selector, name: color}
+
+button:
+  - {_: .Button, name: blackout}
+  - {_: .Toggle, off: left, on: right}
+  - {_: .Toggle, off: down, on: up}
+
+indicator:
+  - {_: .Counter, name: nodes_held}
+  - {_: .Bang, name: controller}
