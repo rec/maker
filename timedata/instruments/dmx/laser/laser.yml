@@ -1,5 +1,5 @@
 _:
-  paths: timedata.ui.laser
+  paths: timedata.instrument.dmx.laser.ui
 
 dmx_level:
   - {_: .DMXLevel, channel:  1, label: A}
@@ -22,10 +22,10 @@ selector:
   - {_: .Selector, name: color}
 
 button:
-  - {_: .Button, name: blackout}
-  - {_: .Toggle, off: left, on: right}
-  - {_: .Toggle, off: down, on: up}
+  blackout: .Button
+  left/right: .Toggle
+  up/down: .Toggle
 
 indicator:
-  - {_: .Counter, name: nodes_held}
-  - {_: .Bang, name: controller}
+  notes_held: .Counter
+  controller_active: .Bang

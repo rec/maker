@@ -1,5 +1,5 @@
 import unittest
-from timedata import fill
+from timedata.object import fill
 
 
 class Bar:
@@ -24,7 +24,7 @@ class FillTest(unittest.TestCase):
         fill.fill({})
 
     def test_simple(self):
-        a = {'_': 'test.timedata.fill_test.Bar', 'foo': 'foo', 'bar': 2}
+        a = {'_': __name__ + '.Bar', 'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=Bar, _object=Bar())
 
         fill.fill(a)
@@ -33,7 +33,7 @@ class FillTest(unittest.TestCase):
         self.assertEqual(a['_object'].bar, 2)
 
     def test_attributes_simple(self):
-        a = {'_': 'test.timedata.fill_test.BazSimple',
+        a = {'_': __name__ + '.BazSimple',
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=BazSimple, _object=BazSimple())
         fill.fill(a)
@@ -42,7 +42,7 @@ class FillTest(unittest.TestCase):
         self.assertEqual(a['_object'].bar, 2)
 
     def test_attributes(self):
-        a = {'_': 'test.timedata.fill_test.Baz',
+        a = {'_': __name__ + '.Baz',
              'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=Baz, _object=Baz())
         fill.fill(a)
@@ -52,4 +52,4 @@ class FillTest(unittest.TestCase):
 
     def test_error(self):
         with self.assertRaises(ValueError):
-            fill.fill({'_': 'test.timedata.fill_test.Baz', 'baz': 1})
+            fill.fill({'_': __name__ + '.Baz', 'baz': 1})

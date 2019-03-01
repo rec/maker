@@ -1,5 +1,5 @@
 import unittest
-from timedata import serialize
+from timedata.util import serialize
 
 TESTS = 'a', ['b', 1], True, None, {},
 
