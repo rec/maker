@@ -23,6 +23,7 @@ class MyFirstGUI:
         print("Greetings!")
 
     def old(self):
+        master = self.master
         self.label = ttk.Label(master, text="This is our first GUI!")
         self.label.pack()
 

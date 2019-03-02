@@ -46,7 +46,7 @@ class DMXLevelCanvas(tkinter.Canvas):
     def _draw_level(self, c, level):
         rect = (c * self.width // len(self.levels),
                 self.height * (255 - level) // 255,
-                (c + 1) * self.width  // len(self.levels),
+                (c + 1) * self.width // len(self.levels),
                 self.height - 1)
         self.coords(c + 1, *rect)
 
@@ -54,21 +54,6 @@ class DMXLevelCanvas(tkinter.Canvas):
 class Base:
     def __init__(self, **kwds):
         self.kwds = kwds
-
-
-class DMXLevel:
-    def __init__(self, parent, channel, label):
-        self.channel = channel
-        self.label = label
-        self.frame = tkinter.Frame(parent)
-        self.frame.pack()
-        self.levels = tkinter.Canvas(self.frame)
-        start = 0
-        for i, (channel, color) in enumerate(self.CHANNEL_COLORS.items()):
-            self.levels.create_rectangle
-            scale = Scale(self.frame, fg=color, **self.SCALE_DEFAULTS)
-            scale.pack(side=tkinter.LEFT)
-            self.scales.append(scale)
 
 
 class AbsLFOFader(Base):
