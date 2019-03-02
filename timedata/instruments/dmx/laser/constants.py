@@ -15,7 +15,7 @@ class Channels(enum.IntEnum):
 
 
 @enum.unique
-class Color(enum.IntEnum):
+class Colors(enum.IntEnum):
     ALL = 0
     RED = 64
     GREEN = 96
@@ -26,7 +26,7 @@ class Color(enum.IntEnum):
 
 
 @enum.unique
-class Pattern(enum.IntEnum):
+class Patterns(enum.IntEnum):
     CIRCLE = 0
     SPIKE_CIRCLE = 8
     TRIANGLE = 16

@@ -1,4 +1,6 @@
-from tkinter import Tk, Label, Button
+from tkinter import Tk, ttk
+
+from timedata.instruments.dmx.laser import ui
 
 
 class MyFirstGUI:
@@ -6,17 +8,23 @@ class MyFirstGUI:
         self.master = master
         master.title("A simple GUI")
 
-        self.label = Label(master, text="This is our first GUI!")
-        self.label.pack()
-
-        self.greet_button = Button(master, text="Greet", command=self.greet)
-        self.greet_button.pack()
-
-        self.close_button = Button(master, text="Close", command=master.quit)
-        self.close_button.pack()
+        self.dmx_level = ui.DMXLevelCanvas(self.master)
+        self.dmx_level.pack()
 
     def greet(self):
         print("Greetings!")
+
+    def old(self):
+        self.label = ttk.Label(master, text="This is our first GUI!")
+        self.label.pack()
+
+        self.greet_button = ttk.Button(
+            master, text="Greet", command=self.greet)
+        self.greet_button.pack()
+
+        self.close_button = ttk.Button(
+            master, text="Close", command=master.quit)
+        self.close_button.pack()
 
 
 root = Tk()
