@@ -1,27 +1,28 @@
 import tkinter
 from . constants import Channels, Colors, Patterns
 
-CHANNEL_COLORS = {
-    Channels.MODE: 'yellow',
-    Channels.PATTERN: 'orange',
-    Channels.ZOOM: 'grey',
-    Channels.XROT: 'red',
-    Channels.YROT: 'green',
-    Channels.ZROT: 'blue',
-    Channels.HPOS: 'red',
-    Channels.VPOS: 'green',
-    Channels.COLOR: 'black',
-}
-
 
 class DMXLevelCanvas(tkinter.Canvas):
+    CHANNEL_COLORS = {
+        Channels.MODE: 'yellow',
+        Channels.PATTERN: 'orange',
+        Channels.ZOOM: 'grey',
+        Channels.XROT: 'red',
+        Channels.YROT: 'green',
+        Channels.ZROT: 'blue',
+        Channels.HPOS: 'red',
+        Channels.VPOS: 'green',
+        Channels.COLOR: 'black',
+    }
+
     def __init__(self, parent, **kwds):
         super().__init__(parent, highlightthickness=0, **kwds)
-        self.levels = {c: c * 20 for c in CHANNEL_COLORS}
+        self.levels = {c: 0 for c in Channels}
 
         for channel in Channels:
-            fill = CHANNEL_COLORS[channel]
-            i = self.create_rectangle(0, 0, 0, 0, fill=fill)
+            color = self.CHANNEL_COLORS[channel]
+            i = self.create_rectangle(
+                0, 0, 0, 0, fill=color, outline=color)
             assert int(channel) + 1 == i
 
         self.bind('<Configure>', self.on_configure)
@@ -43,10 +44,6 @@ class DMXLevelCanvas(tkinter.Canvas):
             self._draw_level(channel, level)
 
     def _draw_level(self, c, level):
-        """
-        full: w, h
-
-        """
         rect = (c * self.width // len(self.levels),
                 self.height * (255 - level) // 255,
                 (c + 1) * self.width  // len(self.levels),
