@@ -1,9 +1,9 @@
-import os, unittest
+import os, platform, unittest
 from . import_all import import_all
 
 IS_TRAVIS = os.getenv('TRAVIS', '').lower().startswith('t')
 BLACKLIST = ['timedata.control.keyboard'] if IS_TRAVIS else []
-DONT_WARN = ['timedata.control.keyboard']
+DONT_WARN = 'timedata.control.keyboard', 'timedata.instruments.dmx.laser.laser'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
