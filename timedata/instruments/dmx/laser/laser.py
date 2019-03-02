@@ -31,4 +31,4 @@
 import pathlib, yaml
 
 DIRNAME = pathlib.Path(__file__).parent / 'laser.yml'
-LASER = yaml.load(open(DIRNAME))
+LASER = yaml.load(open(str(DIRNAME)))
