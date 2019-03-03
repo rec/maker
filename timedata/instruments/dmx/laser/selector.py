@@ -12,7 +12,7 @@ class Selector(tk.OptionMenu):
         super().__init__(master, self.var, *names, **kwds)
 
     def set(self, e):
-        if not isinstance(e, enum_type):
+        if not isinstance(e, self.enum_type):
             i = bisect.bisect_right(self._enums, e)
             e = self._enums[i and i - 1]
         self.var.set(e.name.lower())
