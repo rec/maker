@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
-from timedata.instruments.dmx.laser import constants, selector, toggle_button
+from timedata.instruments.dmx.laser import (
+    constants, selector, toggle_button, abs_lfo_fader)
 
 
 class MyFirstGUI:
@@ -12,7 +13,7 @@ class MyFirstGUI:
             self.dmx_level = ui.DMXLevelCanvas(self.master)
             self.dmx_level.pack(fill=tk.BOTH, expand=tk.YES)
 
-        elif False:
+        if False:
             self.colors = selector.Selector(master, constants.Colors)
             self.patterns = selector.Selector(master, constants.Patterns)
             self.colors.pack()
@@ -20,9 +21,14 @@ class MyFirstGUI:
 
             self.colors.trace(print)
             self.patterns.trace(print)
-        else:
+
+        if False:
             self.button = toggle_button.ToggleButton(master, 'off', 'ON', print)
             self.button.pack()
+
+        if True:
+            self.alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print, print)
+            self.alf.pack()
 
     def greet(self):
         print("Greetings!")
