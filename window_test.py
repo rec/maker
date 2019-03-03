@@ -1,6 +1,6 @@
 from tkinter import ttk
 import tkinter as tk
-from timedata.instruments.dmx.laser import constants, selector
+from timedata.instruments.dmx.laser import constants, selector, toggle_button
 
 
 class MyFirstGUI:
@@ -8,16 +8,21 @@ class MyFirstGUI:
         self.master = master
         master.title('laser recorder')
 
-        # self.dmx_level = ui.DMXLevelCanvas(self.master)
-        # self.dmx_level.pack(fill=tk.BOTH, expand=tk.YES)
+        if False:
+            self.dmx_level = ui.DMXLevelCanvas(self.master)
+            self.dmx_level.pack(fill=tk.BOTH, expand=tk.YES)
 
-        self.colors = selector.Selector(constants.Colors, master)
-        self.patterns = selector.Selector(constants.Patterns, master)
-        self.colors.pack()
-        self.patterns.pack()
+        elif False:
+            self.colors = selector.Selector(master, constants.Colors)
+            self.patterns = selector.Selector(master, constants.Patterns)
+            self.colors.pack()
+            self.patterns.pack()
 
-        self.colors.trace(print)
-        self.patterns.trace(print)
+            self.colors.trace(print)
+            self.patterns.trace(print)
+        else:
+            self.button = toggle_button.ToggleButton(master, 'off', 'ON', print)
+            self.button.pack()
 
     def greet(self):
         print("Greetings!")
