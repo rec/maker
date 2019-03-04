@@ -1,4 +1,3 @@
-import tkinter as tk
 from . constants import Channels
 from . resizable_canvas import ResizableCanvas
 
@@ -17,14 +16,13 @@ class DMXLevels(ResizableCanvas):
     }
 
     def __init__(self, master, **kwds):
-        self.levels = {c: 0 for c in Channels}
         super().__init__(master, **kwds)
-        for channel in Channels:
-            color = self.CHANNEL_COLORS[channel]
-            i = self.create_rectangle(
-                0, 0, 0, 0, fill=color, outline=color)
-            assert int(channel) + 1 == i
 
+        self.levels = {c: 100 for c in Channels}
+        for channel in Channels:
+            c = self.CHANNEL_COLORS[channel]
+            self.create_rectangle(0, 0, 0, 0, fill=c, outline=c)
+        self._init()
 
     def set_level(self, channel, level):
         self.levels[channel] = level

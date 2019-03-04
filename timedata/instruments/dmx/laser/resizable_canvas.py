@@ -2,8 +2,7 @@ import tkinter as tk
 
 
 class ResizableCanvas(tk.Canvas):
-    def __init__(self, parent, **kwds):
-        super().__init__(parent, **kwds)
+    def _init(self):
         self.bind('<Configure>', self._on_configure)
         self.width = self.winfo_width()
         self.height = self.winfo_height()

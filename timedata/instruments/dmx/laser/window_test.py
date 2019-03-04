@@ -1,7 +1,8 @@
 from tkinter import ttk
 import threading, tkinter as tk
 from . import (
-    bang, constants, dmx_levels, selector, toggle_button, abs_lfo_fader)
+    bang, constants, dmx_levels, selector, toggle_button, abs_lfo_fader,
+    notes_held)
 
 
 class MyFirstGUI:
@@ -9,7 +10,7 @@ class MyFirstGUI:
         self.master = master
         master.title('laser recorder')
 
-        if not False:
+        if False:
             self.dmx_levels = dmx_levels.DMXLevels(self.master)
             self.dmx_levels.pack(fill=tk.BOTH, expand=tk.YES)
 
@@ -56,6 +57,18 @@ class MyFirstGUI:
                 b(3)
 
             threading.Thread(target=target, daemon=True).start()
+
+        if not False:
+            notes = notes_held.NotesHeld(master)
+            notes.pack()
+            notes.note_on(200, 'red')
+            notes.note_on(-1, 'red')
+
+            notes.note_on(0)
+            notes.note_on(20, 'green')
+            notes.note_on(127, 'green')
+            notes.note_on(20, 'green')
+            notes.note_on(64, 'blue')
 
     def greet(self):
         print("Greetings!")
