@@ -28,7 +28,3 @@
   * controller activity indicator ('bang')
 
 """
-import pathlib, yaml
-
-DIRNAME = pathlib.Path(__file__).parent / 'laser.yml'
-LASER = yaml.load(open(str(DIRNAME)))
