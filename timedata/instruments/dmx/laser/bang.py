@@ -5,8 +5,9 @@ _BACKGROUNDS = 'activebackground', 'background', 'highlightbackground',
 
 class Bang(tk.Button):
     def __init__(self, master, text,
-                 off='white', on='yellow', delay=0.5, **kwds):
+                 off='white', on='yellow', delay=0.25, **kwds):
         super().__init__(master, text=text, state=tk.DISABLED, **kwds)
+        self['disabledforeground'] = self['fg']
         self.colors = off, on
         self.delay = delay
         self.lock = threading.RLock()
