@@ -7,5 +7,5 @@ source = timedata
 
 [report]
 
-fail_under = 62
+fail_under = 60
 skip_covered = True

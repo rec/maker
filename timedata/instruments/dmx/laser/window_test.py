@@ -15,6 +15,12 @@ class MyFirstGUI:
             self.laser.pack(fill=tk.BOTH, expand=tk.YES)
 
         if False:
+            for i in range(5):
+                tk.Label(master, text=str(i)).grid(row=0, column=i)
+
+            tk.Label(master, text='A').grid(row=1, column=0, columnspan=3)
+
+        if False:
             self.dmx_levels = dmx_levels.DMXLevels(self.master)
             self.dmx_levels.pack(fill=tk.BOTH, expand=tk.YES)
 
@@ -91,6 +97,7 @@ class MyFirstGUI:
         self.close_button.pack()
 
 
-root = tk.Tk()
-my_gui = MyFirstGUI(root)
-root.mainloop()
+if __name__ == '__main__':
+    root = tk.Tk()
+    my_gui = MyFirstGUI(root)
+    root.mainloop()

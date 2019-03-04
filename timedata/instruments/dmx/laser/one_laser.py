@@ -7,18 +7,22 @@ from .resizable import Resizable
 class OneLaser(tk.Frame, Resizable):
     OFF, ON = 'X', 'O'
 
-    def __init__(self, master, text, **kwds):
+    def __init__(self, master, text, on_enable=None, **kwds):
         super().__init__(master, **kwds)
-        self.label = tk.Label(master, text=text)
-        self.levels = DMXLevels(master)
-        self.enable = ToggleButton(self, self.OFF, self.ON, self.on_enable)
+        self._on_enable = on_enable
 
-        self.label.pack()
-        self.levels.pack()
-        self.enable.pack()
+        top = tk.Frame(self)
+        top.pack(fill=tk.X, expand=tk.YES)
 
-    def on_enable(self, enable):
-        if enable == self.OFF:
-            pass
-        else:
-            pass
+        enable = ToggleButton(top, self.OFF, self.ON, self.on_enable)
+
+        enable.pack(side=tk.LEFT)
+        label = tk.Label(top, text=text, font=('Helvetica', 24))
+        label.pack(side=tk.RIGHT)
+
+        self.levels = DMXLevels(self)
+        self.levels.pack(fill=tk.BOTH, expand=tk.YES)
+        self._init()
+
+    def on_enable(self, text):
+        self._on_enable and self._on_enable(text == self.ON)

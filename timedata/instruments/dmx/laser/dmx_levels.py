@@ -19,7 +19,7 @@ class DMXLevels(tk.Canvas, Resizable):
     def __init__(self, master, **kwds):
         super().__init__(master, **kwds)
 
-        self.levels = {c: 100 for c in Channels}
+        self.levels = {c: 255 for c in Channels}
         for channel in Channels:
             c = self.CHANNEL_COLORS[channel]
             self.create_rectangle(0, 0, 0, 0, fill=c, outline=c)
