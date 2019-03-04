@@ -1,7 +1,6 @@
 from tkinter import ttk
 import threading, tkinter as tk
-from timedata.instruments.dmx.laser import (
-    bang, constants, selector, toggle_button, abs_lfo_fader)
+from . import bang, constants, selector, toggle_button, abs_lfo_fader
 
 
 class MyFirstGUI:
