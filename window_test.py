@@ -1,7 +1,7 @@
 from tkinter import ttk
-import tkinter as tk
+import threading, tkinter as tk
 from timedata.instruments.dmx.laser import (
-    constants, selector, toggle_button, abs_lfo_fader)
+    bang, constants, selector, toggle_button, abs_lfo_fader)
 
 
 class MyFirstGUI:
@@ -27,9 +27,36 @@ class MyFirstGUI:
             self.button = toggle_button.ToggleButton(master, 'X', 'O', print)
             self.button.pack()
 
-        if True:
+        if False:
             self.alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print, print)
             self.alf.pack()
+
+        if True:
+            import time
+            self.bang = bang.Bang(master, 'MIDI', off='yellow', on='green',
+                                  font=('Helvetica', 24))
+            self.bang.pack()
+            # print(self.bang.actual())
+
+            def b(t):
+                self.bang.bang()
+                time.sleep(t)
+
+            def target():
+                b(2)
+                b(2)
+                b(0.5)
+                b(0.5)
+                b(0.5)
+                b(3)
+                b(0.2)
+                b(0.2)
+                b(0.2)
+                b(0.2)
+                b(0.2)
+                b(3)
+
+            threading.Thread(target=target, daemon=True).start()
 
     def greet(self):
         print("Greetings!")
