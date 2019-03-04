@@ -1,8 +1,9 @@
 import tkinter as tk
 from . constants import Channels
+from . resizable_canvas import ResizableCanvas
 
 
-class DMXLevels(tk.Canvas):
+class DMXLevels(ResizableCanvas):
     CHANNEL_COLORS = {
         Channels.MODE: 'yellow',
         Channels.PATTERN: 'orange',
@@ -15,29 +16,19 @@ class DMXLevels(tk.Canvas):
         Channels.COLOR: 'black',
     }
 
-    def __init__(self, parent, **kwds):
-        super().__init__(parent, **kwds, class_=self.__class__.__name__)
+    def __init__(self, master, **kwds):
         self.levels = {c: 0 for c in Channels}
-
+        super().__init__(master, **kwds)
         for channel in Channels:
             color = self.CHANNEL_COLORS[channel]
             i = self.create_rectangle(
                 0, 0, 0, 0, fill=color, outline=color)
             assert int(channel) + 1 == i
 
-        self.bind('<Configure>', self._on_configure)
-        self.width = self.winfo_width()
-        self.height = self.winfo_height()
-        self._on_resize()
 
     def set_level(self, channel, level):
         self.levels[channel] = level
         self._draw_level(channel, level)
-
-    def _on_configure(self, event):
-        self.width = event.width
-        self.height = event.height
-        self._on_resize()
 
     def _on_resize(self):
         for channel, level in self.levels.items():

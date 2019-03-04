@@ -1,6 +1,7 @@
 from tkinter import ttk
 import threading, tkinter as tk
-from . import bang, constants, selector, toggle_button, abs_lfo_fader
+from . import (
+    bang, constants, dmx_levels, selector, toggle_button, abs_lfo_fader)
 
 
 class MyFirstGUI:
@@ -8,10 +9,9 @@ class MyFirstGUI:
         self.master = master
         master.title('laser recorder')
 
-        if False:
-            pass
-            # self.dmx_level = ui.DMXLevelCanvas(self.master)
-            # self.dmx_level.pack(fill=tk.BOTH, expand=tk.YES)
+        if not False:
+            self.dmx_levels = dmx_levels.DMXLevels(self.master)
+            self.dmx_levels.pack(fill=tk.BOTH, expand=tk.YES)
 
         if False:
             self.colors = selector.Selector(master, constants.Colors)
@@ -30,7 +30,7 @@ class MyFirstGUI:
             self.alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print, print)
             self.alf.pack()
 
-        if True:
+        if False:
             import time
             self.bang = bang.Bang(master, 'MIDI', off='yellow', on='green',
                                   font=('Helvetica', 24))
