@@ -2,13 +2,17 @@ from tkinter import ttk
 import threading, tkinter as tk
 from . import (
     bang, constants, dmx_levels, selector, toggle_button, abs_lfo_fader,
-    notes_held)
+    notes_held, one_laser)
 
 
 class MyFirstGUI:
     def __init__(self, master):
         self.master = master
         master.title('laser recorder')
+
+        if not False:
+            self.laser = one_laser.OneLaser(master, 'A 1')
+            self.laser.pack(fill=tk.BOTH, expand=tk.YES)
 
         if False:
             self.dmx_levels = dmx_levels.DMXLevels(self.master)
@@ -58,7 +62,7 @@ class MyFirstGUI:
 
             threading.Thread(target=target, daemon=True).start()
 
-        if not False:
+        if False:
             notes = notes_held.NotesHeld(master)
             notes.pack()
             notes.note_on(200, 'red')

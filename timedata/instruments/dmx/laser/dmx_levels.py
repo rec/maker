@@ -1,8 +1,9 @@
+import tkinter as tk
 from . constants import Channels
-from . resizable_canvas import ResizableCanvas
+from . resizable import Resizable
 
 
-class DMXLevels(ResizableCanvas):
+class DMXLevels(tk.Canvas, Resizable):
     CHANNEL_COLORS = {
         Channels.MODE: 'yellow',
         Channels.PATTERN: 'orange',

@@ -1,10 +1,10 @@
 import math, tkinter as tk
-from . resizable_canvas import ResizableCanvas
+from . resizable import Resizable
 
 PADDING = 4
 
 
-class NotesHeld(ResizableCanvas):
+class NotesHeld(tk.Canvas, Resizable):
     def __init__(self, parent, columns=16, low=0, high=127, padding=1,
                  color='black', frame_padding=4, **kwds):
         super().__init__(parent, **kwds)

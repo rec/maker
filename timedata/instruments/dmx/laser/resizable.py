@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-class ResizableCanvas(tk.Canvas):
+class Resizable:
     def _init(self):
         self.bind('<Configure>', self._on_configure)
         self.width = self.winfo_width()
