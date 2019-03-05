@@ -4,6 +4,7 @@ from . import_all import import_all
 IS_TRAVIS = os.getenv('TRAVIS', '').lower().startswith('t')
 BLACKLIST = (['timedata.control.keyboard'] if IS_TRAVIS else []) + [
     'timedata.instruments.dmx.laser.laser',
+    'timedata.ui.ui_test',
     'timedata.instruments.dmx.laser.window_test',
     'timedata.instruments.dmx.laser.window_test2']
 DONT_WARN = 'timedata.control.keyboard',

@@ -15,6 +15,7 @@ class AbsLfoFader(tk.Frame):
         super().__init__(master, **kwds)
         self.label = tk.Label(self, text=label)
         self.scale = tk.Scale(self, command=on_scale, **self.SCALE_KWDS)
+        # self.entry = int_entry.IntEntry(self, 0, 127)
         self.button = ToggleButton(self, 'abs', 'LFO', on_toggle)
 
         self.label.pack()

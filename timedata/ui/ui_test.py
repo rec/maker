@@ -1,15 +1,15 @@
 import threading, tkinter as tk
-from . import bang, toggle_button, notes_held
+from . import bang, int_entry, toggle_button, notes_held
 
 
 def make_gui(master):
     master.title('ui test')
 
-    if False:
-        for i in range(5):
-            tk.Label(master, text=str(i)).grid(row=0, column=i)
-
-        tk.Label(master, text='A').grid(row=1, column=0, columnspan=3)
+    if not False:
+        ie = int_entry.IntEntry(master, 0, 255)
+        ie.pack()
+        ie2 = int_entry.IntEntry(master)
+        ie2.pack()
 
     if False:
         button = toggle_button.ToggleButton(master, 'X', 'O', print)
@@ -17,9 +17,9 @@ def make_gui(master):
 
     if False:
         import time
-        bang = bang.Bang(master, 'MIDI', off='yellow', on='green',
-                              font=('Helvetica', 24))
-        bang.pack()
+        font = 'Helvetica', 24
+        b = bang.Bang(master, 'MIDI', off='yellow', on='green', font=font)
+        b.pack()
         # print(bang.actual())
 
         def b(t):
@@ -42,7 +42,7 @@ def make_gui(master):
 
         threading.Thread(target=target, daemon=True).start()
 
-    if not False:
+    if False:
         notes = notes_held.NotesHeld(master)
         notes.pack()
         notes.note_on(200, 'red')

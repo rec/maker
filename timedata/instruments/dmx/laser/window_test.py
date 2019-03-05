@@ -7,13 +7,13 @@ from timedata.ui import selector
 def make_gui(master):
     master.title('laser recorder')
 
-    if not False:
+    if False:
         laser = one_laser.OneLaser(master, 'A 1')
         laser.pack(fill=tk.BOTH, expand=tk.YES)
 
     if False:
-        dmx_levels = dmx_levels.DMXLevels(master)
-        dmx_levels.pack(fill=tk.BOTH, expand=tk.YES)
+        dmx = dmx_levels.DMXLevels(master)
+        dmx.pack(fill=tk.BOTH, expand=tk.YES)
 
     if False:
         colors = color_selector.ColorSelector(master)
@@ -24,7 +24,7 @@ def make_gui(master):
         colors.add_callback(print)
         patterns.add_callback(print)
 
-    if False:
+    if not False:
         alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print, print)
         alf.pack()
 

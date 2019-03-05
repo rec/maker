@@ -1,7 +1,8 @@
 import bisect, tkinter as tk
+from . import has_var
 
 
-class Selector(tk.OptionMenu):
+class Selector(tk.OptionMenu, has_var.HasVar):
     def __init__(self, master, enum_type, **kwds):
         self.enum_type = enum_type
         self._enums = sorted(enum_type)
@@ -16,8 +17,5 @@ class Selector(tk.OptionMenu):
             e = self._enums[i and i - 1]
         self.var.set(e.name.lower())
 
-    def add_callback(self, callback):
-        def f(*_):
-            callback(self.enum_type[self.var.get().upper()])
-
-        self.var.trace('w', f)
+    def _process_var(self, var):
+        return self.enum_type[var.upper()]
