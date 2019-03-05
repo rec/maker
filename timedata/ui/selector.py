@@ -1,5 +1,4 @@
-import bisect, functools, tkinter as tk
-from  .constants import Colors
+import bisect, tkinter as tk
 
 
 class Selector(tk.OptionMenu):
@@ -22,17 +21,3 @@ class Selector(tk.OptionMenu):
             callback(self.enum_type[self.var.get().upper()])
 
         self.var.trace('w', f)
-
-
-class ColorSelector(Selector):
-    def __init__(self, master, **kwds):
-        super().__init__(master, Colors, **kwds)
-
-    def add_callback(self, callback):
-        @functools.wraps(callback)
-        def wrapped_cb(e):
-            color = 'white' if e is Colors.ALL else e.name.lower()
-            self.config(bg=color, highlightbackground=color)
-            callback(e)
-
-        return super().add_callback(wrapped_cb)

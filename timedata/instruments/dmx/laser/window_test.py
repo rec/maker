@@ -1,8 +1,7 @@
 from tkinter import ttk
 import threading, tkinter as tk
-from . import (
-    bang, constants, dmx_levels, selector, toggle_button, abs_lfo_fader,
-    notes_held, one_laser)
+from . import color_selector, constants, dmx_levels, abs_lfo_fader, one_laser
+from timedata.ui import bang, selector, toggle_button, notes_held
 
 
 class MyFirstGUI:
@@ -24,8 +23,8 @@ class MyFirstGUI:
             self.dmx_levels = dmx_levels.DMXLevels(self.master)
             self.dmx_levels.pack(fill=tk.BOTH, expand=tk.YES)
 
-        if not False:
-            self.colors = selector.ColorSelector(master)
+        if False:
+            self.colors = color_selector.ColorSelector(master)
             self.patterns = selector.Selector(master, constants.Patterns)
             self.colors.pack()
             self.patterns.pack()
@@ -37,7 +36,7 @@ class MyFirstGUI:
             self.button = toggle_button.ToggleButton(master, 'X', 'O', print)
             self.button.pack()
 
-        if False:
+        if not False:
             self.alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print, print)
             self.alf.pack()
 

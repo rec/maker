@@ -1,6 +1,6 @@
 import tkinter as tk
-from . constants import Channels
-from . resizable import Resizable
+from .constants import Channels
+from timedata.ui.resizable import Resizable
 
 
 class DMXLevels(tk.Canvas, Resizable):

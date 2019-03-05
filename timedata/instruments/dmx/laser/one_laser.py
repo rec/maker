@@ -1,10 +1,9 @@
 import tkinter as tk
-from .toggle_button import ToggleButton
+from timedata.ui import resizable, toggle_button
 from .dmx_levels import DMXLevels
-from .resizable import Resizable
 
 
-class OneLaser(tk.Frame, Resizable):
+class OneLaser(tk.Frame, resizable.Resizable):
     OFF, ON = 'X', 'O'
 
     def __init__(self, master, text, on_enable=None, **kwds):
@@ -14,7 +13,8 @@ class OneLaser(tk.Frame, Resizable):
         top = tk.Frame(self)
         top.pack(fill=tk.X, expand=tk.YES)
 
-        enable = ToggleButton(top, self.OFF, self.ON, self.on_enable)
+        enable = toggle_button.ToggleButton(
+            top, self.OFF, self.ON, self.on_enable)
 
         enable.pack(side=tk.LEFT)
         label = tk.Label(top, text=text, font=('Helvetica', 24))
