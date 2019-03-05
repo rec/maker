@@ -10,7 +10,7 @@ class MyFirstGUI:
         self.master = master
         master.title('laser recorder')
 
-        if not False:
+        if False:
             self.laser = one_laser.OneLaser(master, 'A 1')
             self.laser.pack(fill=tk.BOTH, expand=tk.YES)
 
@@ -24,14 +24,14 @@ class MyFirstGUI:
             self.dmx_levels = dmx_levels.DMXLevels(self.master)
             self.dmx_levels.pack(fill=tk.BOTH, expand=tk.YES)
 
-        if False:
-            self.colors = selector.Selector(master, constants.Colors)
+        if not False:
+            self.colors = selector.ColorSelector(master)
             self.patterns = selector.Selector(master, constants.Patterns)
             self.colors.pack()
             self.patterns.pack()
 
-            self.colors.trace(print)
-            self.patterns.trace(print)
+            self.colors.add_callback(print)
+            self.patterns.add_callback(print)
 
         if False:
             self.button = toggle_button.ToggleButton(master, 'X', 'O', print)
