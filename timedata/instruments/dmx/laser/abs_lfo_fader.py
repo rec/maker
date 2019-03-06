@@ -1,5 +1,5 @@
 import tkinter as tk
-from timedata.ui.toggle_button import ToggleButton
+from timedata.ui import toggle_button, int_slider
 
 
 class AbsLfoFader(tk.Frame):
@@ -13,11 +13,8 @@ class AbsLfoFader(tk.Frame):
 
     def __init__(self, master, label, on_toggle, on_scale, **kwds):
         super().__init__(master, **kwds)
-        self.label = tk.Label(self, text=label)
-        self.scale = tk.Scale(self, command=on_scale, **self.SCALE_KWDS)
-        # self.entry = int_entry.IntEntry(self, 0, 127)
-        self.button = ToggleButton(self, 'abs', 'LFO', on_toggle)
+        self.slider = int_slider.IntSlider(master, label, 0, 127)
+        self.button = toggle_button.ToggleButton(self, 'abs', 'LFO', on_toggle)
 
-        self.label.pack()
-        self.scale.pack()
+        self.slider.pack()
         self.button.pack()

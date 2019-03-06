@@ -15,13 +15,13 @@ class IntSlider(tk.Frame):
         super().__init__(master, **kwds)
         self.label = tk.Label(self, text=label)
         self.entry = IntEntry(self, low=low, high=high)
-        self.scale_var = var.IntVar()
-        self.scale = tk.Scale(self, variable=self.scale_var,
+        self.var = var.IntVar()
+        self.scale = tk.Scale(self, variable=self.var,
                               to=low, from_=high, **self.SCALE_KWDS)
 
         self.label.pack()
         self.scale.pack()
         self.entry.pack()
 
-        self.entry.var.add_callback(self.scale_var.set)
-        self.scale_var.add_callback(self.entry.var.set)
+        self.entry.var.add_callback(self.var.set)
+        self.var.add_callback(self.entry.var.set)

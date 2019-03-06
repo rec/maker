@@ -13,5 +13,4 @@ class ColorSelector(selector.Selector):
             color = 'white' if e is constants.Colors.ALL else e.name.lower()
             self.config(bg=color, highlightbackground=color)
             callback(e)
-
         return super().add_callback(wrapped_cb)
