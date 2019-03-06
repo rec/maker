@@ -6,6 +6,11 @@ INF = float('inf')
 
 class IntEntry(tk.Entry):
     def __init__(self, master, low=-INF, high=INF, **kwds):
+        if low >= 10:
+            # Because otherwise we couldn't ever type the first digit
+            # TODO: figure out how to fix this
+            raise ValueError('low must be less than 10')
+
         self.low = low
         self.high = high
         self.var = var.IntVar()
@@ -28,7 +33,10 @@ class IntEntry(tk.Entry):
         if self.low < 0 and text == '-':
             return True
         try:
-            return ((self.low < 0 and text == '-') or text == ''
-                    or self.low <= int(text) <= self.high)
+            if ((self.low < 0 and text == '-')
+                    or text == ''
+                    or self.low <= int(text) <= self.high):
+                return True
         except:
-            return False
+            pass
+        self.bell()

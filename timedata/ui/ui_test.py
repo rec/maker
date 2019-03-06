@@ -5,7 +5,7 @@ from . import bang, int_entry, int_slider, toggle_button, notes_held
 def make_gui(master):
     master.title('ui test')
 
-    if not False:
+    if False:
         islider = int_slider.IntSlider(master, 'Slider')
         islider.pack()
 
@@ -15,7 +15,7 @@ def make_gui(master):
         ie2 = int_entry.IntEntry(master)
         ie2.pack()
 
-    if False:
+    if not False:
         button = toggle_button.ToggleButton(master, 'X', 'O', print)
         button.pack()
 

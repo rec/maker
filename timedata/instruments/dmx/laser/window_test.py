@@ -15,7 +15,7 @@ def make_gui(master):
         dmx = dmx_levels.DMXLevels(master)
         dmx.pack(fill=tk.BOTH, expand=tk.YES)
 
-    if not False:
+    if False:
         colors = color_selector.ColorSelector(master)
         patterns = selector.Selector(master, constants.Patterns)
         colors.pack()
@@ -24,7 +24,7 @@ def make_gui(master):
         colors.add_callback(print)
         patterns.add_callback(print)
 
-    if False:
+    if not False:
         alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print, print)
         alf.pack()
 

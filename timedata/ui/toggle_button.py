@@ -1,3 +1,4 @@
+from . import grounds
 import tkinter as tk
 
 
@@ -11,6 +12,7 @@ class ToggleButton(tk.Button):
 
         super().__init__(master, command=command, **kwds)
         self.texts = off, on
+        self.colors = self['background'], self['foreground']
         self.state = False
 
     @property
@@ -24,4 +26,8 @@ class ToggleButton(tk.Button):
     @state.setter
     def state(self, s):
         self._state = s
-        self.config(text=self.text, relief=self.RELIEF[s])
+        bg, fg = self.colors[s], self.colors[not s]
+        self.config(text=self.text, relief=self.RELIEF[s],
+                    foreground=fg, activeforeground=fg,
+                    background=bg, activebackground=bg)
+        grounds.set_bg(self, bg)

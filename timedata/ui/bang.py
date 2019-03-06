@@ -1,6 +1,5 @@
 import threading, time, tkinter as tk
-
-_BACKGROUNDS = 'activebackground', 'background', 'highlightbackground',
+from . import grounds
 
 
 class Bang(tk.Button):
@@ -23,7 +22,7 @@ class Bang(tk.Button):
         with self.lock:
             if s != self._state:
                 self._state = s
-                self.config({b: self.colors[s] for b in _BACKGROUNDS})
+                grounds.set_bg(self, self.colors[s])
 
     def _after(self, delay):
         self.after(int(1000 * delay), self._target)
