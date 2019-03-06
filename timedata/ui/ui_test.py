@@ -1,11 +1,15 @@
 import threading, tkinter as tk
-from . import bang, int_entry, toggle_button, notes_held
+from . import bang, int_entry, int_slider, toggle_button, notes_held
 
 
 def make_gui(master):
     master.title('ui test')
 
     if not False:
+        islider = int_slider.IntSlider(master, 'Slider')
+        islider.pack()
+
+    if False:
         ie = int_entry.IntEntry(master, 0, 255)
         ie.pack()
         ie2 = int_entry.IntEntry(master)

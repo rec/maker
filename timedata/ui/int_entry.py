@@ -1,16 +1,16 @@
 import tkinter as tk
-from . import has_var
+from . import var
 
 INF = float('inf')
 
 
-class IntEntry(tk.Entry, has_var.HasVar):
+class IntEntry(tk.Entry):
     def __init__(self, master, low=-INF, high=INF, **kwds):
         self.low = low
         self.high = high
-        self.var = tk.IntVar()
-        self.str_var = has_var.HasVar(tk.StringVar())
-        self.add_callback(self.on_int)
+        self.var = var.IntVar()
+        self.str_var = var.StringVar()
+        self.var.add_callback(self.on_int)
         self.str_var.add_callback(self.on_str)
 
         vc = master.register(self._validate), '%P'
@@ -19,7 +19,7 @@ class IntEntry(tk.Entry, has_var.HasVar):
         self.var.set(0)
 
     def on_int(self, i):
-        self.str_var.set(str(i))
+        self.str_var.set(str(i) if i else '')
 
     def on_str(self, s):
         self.var.set((s and s != '-' and int(s)) or 0)
