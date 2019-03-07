@@ -11,9 +11,9 @@ class AbsLfoFader(tk.Frame):
         'to': 0,
     }
 
-    def __init__(self, master, label, on_toggle, on_scale, **kwds):
+    def __init__(self, master, label, on_toggle, **kwds):
         super().__init__(master, **kwds)
-        self.slider = int_slider.IntSlider(master, label, 0, 127)
+        self.slider = int_slider.IntSlider(self, label, 0, 127)
         self.button = toggle_button.ToggleButton(self, 'abs', 'LFO', on_toggle)
 
         self.slider.pack()
