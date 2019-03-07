@@ -7,7 +7,7 @@ class Selector(tk.OptionMenu):
         self.enum_type = enum_type
         self._enums = sorted(enum_type)
 
-        names = [e.name.lower() for e in enum_type]
+        names = [e.name.capitalize().replace('_', ' ') for e in enum_type]
         self.var = var.StringVar(value=names[0])
         super().__init__(master, self.var, *names, **kwds)
 
@@ -21,4 +21,4 @@ class Selector(tk.OptionMenu):
         self.var.add_callback(callback, process=self._process)
 
     def _process(self, var):
-        return self.enum_type[var.upper()]
+        return self.enum_type[var.upper().replace(' ', '_')]

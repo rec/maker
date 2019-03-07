@@ -8,11 +8,11 @@ class DMXLevels(tk.Canvas, Resizable):
         Channels.MODE: 'yellow',
         Channels.PATTERN: 'orange',
         Channels.ZOOM: 'grey',
-        Channels.XROT: 'red',
-        Channels.YROT: 'green',
-        Channels.ZROT: 'blue',
-        Channels.HPOS: 'red',
-        Channels.VPOS: 'green',
+        Channels.X_ROT: 'red',
+        Channels.Y_ROT: 'green',
+        Channels.Z_ROT: 'blue',
+        Channels.H_POS: 'red',
+        Channels.V_POS: 'green',
         Channels.COLOR: 'black',
     }
 

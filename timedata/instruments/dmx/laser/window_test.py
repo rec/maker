@@ -8,7 +8,7 @@ from timedata.ui import selector
 def make_gui(master):
     master.title('laser recorder')
 
-    if not False:
+    if False:
         lasers = six_lasers.SixLasers(master)
         lasers.pack(fill=tk.BOTH, expand=tk.YES)
 
@@ -20,7 +20,7 @@ def make_gui(master):
         dmx = dmx_levels.DMXLevels(master)
         dmx.pack(fill=tk.BOTH, expand=tk.YES)
 
-    if False:
+    if not False:
         colors = color_selector.ColorSelector(master)
         patterns = selector.Selector(master, constants.Patterns)
         colors.pack()

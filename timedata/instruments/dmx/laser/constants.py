@@ -6,11 +6,11 @@ class Channels(enum.IntEnum):
     MODE = 0
     PATTERN = 1
     ZOOM = 2
-    XROT = 3
-    YROT = 4
-    ZROT = 5
-    HPOS = 6
-    VPOS = 7
+    X_ROT = 3
+    Y_ROT = 4
+    Z_ROT = 5
+    H_POS = 6
+    V_POS = 7
     COLOR = 8
 
 
