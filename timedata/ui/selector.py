@@ -1,4 +1,4 @@
-import bisect, tkinter as tk
+import tkinter as tk
 from . import var
 
 
@@ -7,18 +7,13 @@ class Selector(tk.OptionMenu):
         self.enum_type = enum_type
         self._enums = sorted(enum_type)
 
-        names = [e.name.capitalize().replace('_', ' ') for e in enum_type]
+        names = [e.pretty_string() for e in enum_type]
         self.var = var.StringVar(value=names[0])
         super().__init__(master, self.var, *names, **kwds)
 
     def set(self, e):
-        if not isinstance(e, self.enum_type):
-            i = bisect.bisect_right(self._enums, e)
-            e = self._enums[i and i - 1]
-        self.var.set(e.name.lower())
+        e = self.enum_type.make(e)
+        self.var.set(e.pretty_string())
 
     def add_callback(self, callback):
-        self.var.add_callback(callback, process=self._process)
-
-    def _process(self, var):
-        return self.enum_type[var.upper().replace(' ', '_')]
+        self.var.add_callback(callback, process=self.enum_type.make)

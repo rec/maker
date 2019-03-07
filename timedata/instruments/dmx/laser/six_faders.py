@@ -9,7 +9,7 @@ class SixFaders(resizable.Frame):
         self.faders = []
         channels = list(constants.Channels)[2:]
         for i, channel in enumerate(channels):
-            name = channel.name.capitalize().replace('_', ' ')
-            fader = abs_lfo_fader.AbsLfoFader(self, name, print)
+            fader = abs_lfo_fader.AbsLfoFader(
+                self, channel.pretty_string(), print)
             fader.pack(side=tk.LEFT)
             self.faders.append(fader)
