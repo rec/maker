@@ -1,6 +1,6 @@
 from tkinter import ttk
 import threading, tkinter as tk
-from . import color_selector, constants, dmx_levels, abs_lfo_fader, one_laser
+from . import selectors, constants, dmx_levels, abs_lfo_fader, one_laser
 from . import six_lasers, six_faders, loose_buttons
 from timedata.ui import selector
 
@@ -8,7 +8,7 @@ from timedata.ui import selector
 def make_gui(master):
     master.title('laser recorder')
 
-    if not False:
+    if False:
         buttons = loose_buttons.LooseButtons(master)
         buttons.pack(fill=tk.BOTH, expand=tk.YES)
 
@@ -28,14 +28,12 @@ def make_gui(master):
         dmx = dmx_levels.DMXLevels(master)
         dmx.pack(fill=tk.BOTH, expand=tk.YES)
 
-    if False:
-        colors = color_selector.ColorSelector(master)
-        patterns = selector.Selector(master, constants.Patterns)
-        colors.pack()
-        patterns.pack()
+    if not False:
+        sels = selectors.Selectors(master)
+        sels.pack()
 
-        colors.add_callback(print)
-        patterns.add_callback(print)
+        sels.colors.add_callback(print)
+        sels.patterns.add_callback(print)
 
     if False:
         alf = abs_lfo_fader.AbsLfoFader(master, 'TEST', print)

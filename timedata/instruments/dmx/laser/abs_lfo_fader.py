@@ -1,8 +1,8 @@
 import tkinter as tk
-from timedata.ui import toggle_button, int_slider
+from timedata.ui import resizable, toggle_button, int_slider
 
 
-class AbsLfoFader(tk.Frame):
+class AbsLfoFader(resizable.Frame):
     SCALE_KWDS = {
         'from_': 127,
         'orient': tk.VERTICAL,
