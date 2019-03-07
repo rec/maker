@@ -1,9 +1,9 @@
 import tkinter as tk
 from .constants import Channels
-from timedata.ui.resizable import Resizable
+from timedata.ui import resizable
 
 
-class DMXLevels(tk.Canvas, Resizable):
+class DMXLevels(resizable.Canvas):
     CHANNEL_COLORS = {
         Channels.MODE: 'yellow',
         Channels.PATTERN: 'orange',

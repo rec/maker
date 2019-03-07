@@ -15,3 +15,11 @@ class Resizable:
 
     def _on_resize(self):
         pass
+
+
+class Canvas(tk.Canvas, Resizable):
+    pass
+
+
+class Frame(tk.Frame, Resizable):
+    pass

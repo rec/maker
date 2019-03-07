@@ -3,7 +3,7 @@ from timedata.ui import resizable, toggle_button
 from .dmx_levels import DMXLevels
 
 
-class OneLaser(tk.Frame, resizable.Resizable):
+class OneLaser(resizable.Frame):
     OFF, ON = 'X', 'O'
 
     def __init__(self, master, text, callback=None, **kwds):
