@@ -1,7 +1,7 @@
 from tkinter import ttk
 import threading, tkinter as tk
 from . import color_selector, constants, dmx_levels, abs_lfo_fader, one_laser
-from . import six_lasers, six_faders
+from . import six_lasers, six_faders, loose_buttons
 from timedata.ui import selector
 
 
@@ -9,6 +9,10 @@ def make_gui(master):
     master.title('laser recorder')
 
     if not False:
+        buttons = loose_buttons.LooseButtons(master)
+        buttons.pack(fill=tk.BOTH, expand=tk.YES)
+
+    if False:
         faders = six_faders.SixFaders(master)
         faders.pack(fill=tk.BOTH, expand=tk.YES)
 
