@@ -5,11 +5,13 @@ import tkinter as tk
 class ToggleButton(tk.Button):
     RELIEF = 'raised', 'sunken'
 
-    def __init__(self, master, off, on, callback=None, **kwds):
+    def __init__(self, master, off, on, callback=None, width=None, **kwds):
         def command():
             self.state = not self.state
 
-        super().__init__(master, command=command, **kwds)
+        width = width or max(len(off), len(on))
+        print('ToggleButton', width, off, on)
+        super().__init__(master, command=command, width=width, **kwds)
 
         self.callback = callback
         self.texts = off, on
@@ -27,7 +29,7 @@ class ToggleButton(tk.Button):
     @state.setter
     def state(self, s):
         self._state = s
-        text = self.text[s]
+        text = self.texts[s]
         bg, fg = self.colors[s], self.colors[not s]
         self.config(text=text, relief=self.RELIEF[s],
                     foreground=fg, activeforeground=fg,

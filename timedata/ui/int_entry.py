@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter as tk, math
 from . import var
 
 INF = float('inf')
@@ -11,16 +11,20 @@ class IntEntry(tk.Entry):
             # TODO: figure out how to fix this
             raise ValueError('low must be less than 10')
 
+        if low >= high:
+            raise ValueError('Empty slider')
+
         self.low = low
         self.high = high
         self.var = var.IntVar()
         self.str_var = var.StringVar()
         self.var.add_callback(self.on_int)
         self.str_var.add_callback(self.on_str)
+        width = 1 + int(math.log10(max(abs(low), abs(high)))) + (low < 0)
 
         vc = master.register(self._validate), '%P'
         super().__init__(master, validate='all', validatecommand=vc,
-                         textvariable=self.str_var, **kwds)
+                         width=width, textvariable=self.str_var, **kwds)
         self.var.set(0)
 
     def on_int(self, i):

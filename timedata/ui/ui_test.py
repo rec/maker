@@ -16,7 +16,7 @@ def make_gui(master):
         ie2.pack()
 
     if not False:
-        button = toggle_button.ToggleButton(master, 'X', 'O', print)
+        button = toggle_button.ToggleButton(master, '01234567', 'ABCDEFG', print)
         button.pack()
 
     if False:
