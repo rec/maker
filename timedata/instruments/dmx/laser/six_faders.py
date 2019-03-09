@@ -1,6 +1,6 @@
 import tkinter as tk
 from . import constants, abs_lfo_fader
-from timedata.ui import resizable
+from timedata.old_ui import resizable
 
 
 class SixFaders(resizable.Frame):

@@ -1,5 +1,5 @@
 import tkinter as tk
-from timedata.ui import resizable, toggle_button, int_slider
+from timedata.old_ui import resizable, toggle_button, int_slider
 
 
 class AbsLfoFader(resizable.Frame):

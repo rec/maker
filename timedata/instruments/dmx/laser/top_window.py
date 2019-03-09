@@ -1,6 +1,6 @@
 import tkinter as tk
 from . import selectors, six_lasers, six_faders, loose_buttons
-from timedata.ui import resizable
+from timedata.old_ui import resizable
 
 DEFAULT_NAMES = 'A1', 'B17', 'C33', 'D49', 'E65', 'F73'
 

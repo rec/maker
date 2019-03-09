@@ -1,5 +1,5 @@
 import functools
-from timedata.ui import resizable, selector
+from timedata.old_ui import resizable, selector
 from . import constants
 
 

@@ -1,5 +1,5 @@
 import threading, tkinter as tk
-from . import bang, int_entry, int_slider, toggle_button, notes_held
+from . import bang, int_entry, int_slider, toggle_button, notes_held, run_tk
 
 
 def make_gui(master):
@@ -16,7 +16,8 @@ def make_gui(master):
         ie2.pack()
 
     if not False:
-        button = toggle_button.ToggleButton(master, '01234567', 'ABCDEFG', print)
+        button = toggle_button.ToggleButton(
+            master, '01234567', 'ABCDEFG', print)
         button.pack()
 
     if False:
@@ -60,6 +61,5 @@ def make_gui(master):
 
 
 if __name__ == '__main__':
-    root = tk.Tk()
-    make_gui(root)
-    root.mainloop()
+    with run_tk.run() as root:
+        make_gui(root)

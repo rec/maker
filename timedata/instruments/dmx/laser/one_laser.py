@@ -1,5 +1,5 @@
 import tkinter as tk
-from timedata.ui import resizable, toggle_button
+from timedata.old_ui import resizable, toggle_button
 from .dmx_levels import DMXLevels
 
 
