@@ -3,7 +3,7 @@ Table of named colors
 """
 
 import itertools, re
-from . import juce
+from . import juce, wikipedia
 
 
 def canonical_name(name):
@@ -16,54 +16,38 @@ def to_triplet(color):
     return r, g, b
 
 
-def set_user_colors(colors):
-    from . import names
-
-    _TO_NAME_USER.clear()
-    _TO_COLOR_USER.clear()
-
-    for name, color in colors.items():
-        color = names.to_color(color)
-        _TO_NAME_USER[color] = name
-        _TO_COLOR_USER[canonical_name(name)] = color
-
-
 def get_color(name):
     name = canonical_name(name)
-    return _TO_COLOR_USER.get(name) or _TO_COLOR.get(name)
+    return _TO_COLOR.get(name)
 
 
 def get_name(color):
-    return _TO_NAME_USER.get(color) or _TO_NAME.get(color)
-
-
-def all_named_colors():
-    """Return an iteration over all name, color pairs in the table"""
-    yield from _TO_COLOR_USER.items()
-    for name, color in _TO_COLOR.items():
-        if name not in _TO_COLOR_USER:
-            yield name, color
+    return _TO_NAME.get(color)
 
 
 def contains(x):
     """Return true if this string or integer tuple appears the table"""
     if isinstance(x, str):
-        x = canonical_name(x)
-        return x in _TO_COLOR_USER or x in _TO_COLOR
+        return canonical_name(x) in _TO_COLOR
     else:
-        x = tuple(x)
-        return x in _TO_NAME_USER or x in _TO_NAME
+        return tuple(x) in _TO_NAME
+
+
+def _to_names(colors):
+    rev = {}
+    for name, value in colors.items():
+        rev.setdefault(value, []).append(name)
+    for v in rev.values():
+        v.sort(key=lambda n: (len(n), n.lower()))
+    return {k: v[0] for k, v in rev.items()}
 
 
 """
 A dictionary of every color by name.
 """
 
-COLOR_DICT = {k: to_triplet(v) for k, v in juce.COLORS.items()}
+COLOR_DICT = {k: to_triplet(v) for k, v in wikipedia.COLORS.items()}
 CANONICAL_DICT = {canonical_name(k): v for k, v in COLOR_DICT.items()}
 
-_SECONDARY_NAMES = juce.SECONDARY_NAMES.union({'off', 'on'})
-_TO_NAME = {v: k for k, v in COLOR_DICT.items() if k not in _SECONDARY_NAMES}
+_TO_NAME = _to_names(COLOR_DICT)
 _TO_COLOR = {canonical_name(k): v for k, v in COLOR_DICT.items()}
-_TO_NAME_USER = {}
-_TO_COLOR_USER = {}

@@ -44,7 +44,7 @@ class Colors:
         raise AttributeError('Cannot change COLORS')
 
     def __iter__(self):
-        return table.all_named_colors()
+        return iter(table.COLOR_DICT)
 
     def __contains__(self, x):
         return table.contains(x)
