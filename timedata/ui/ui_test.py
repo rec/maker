@@ -1,6 +1,6 @@
 import time, threading, random
 from kivy.app import App
-from . import bang, toggle_button, notes_held, selector
+from . import bang, toggle_button, notes_held, selector, int_entry
 from timedata.instruments.dmx.laser import constants
 
 
@@ -12,8 +12,14 @@ class UIApp(App):
             return test_toggle()
         if False:
             return test_notes_held()
-        if not False:
+        if False:
             return test_selector()
+        if not False:
+            return test_int_entry()
+
+
+def test_int_entry():
+    return int_entry.IntEntry(0, 255)
 
 
 def test_selector():
