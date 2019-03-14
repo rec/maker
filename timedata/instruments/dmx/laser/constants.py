@@ -1,24 +1,6 @@
-import bisect, enum
+from timedata.util.enums import IntEnum
 
 
-class IntEnum(enum.IntEnum):
-    @classmethod
-    def make(cls, x):
-        if isinstance(x, cls):
-            return x
-
-        if isinstance(x, str):
-            return cls[x.upper().replace(' ', '_')]
-
-        enums = sorted(cls)
-        i = bisect.bisect_right(enums, x)
-        return enums[i and i - 1]
-
-    def pretty_string(self):
-        return self.name.capitalize().replace('_', ' ')
-
-
-@enum.unique
 class Channels(IntEnum):
     MODE = 0
     PATTERN = 1
@@ -31,7 +13,6 @@ class Channels(IntEnum):
     COLOR = 8
 
 
-@enum.unique
 class Colors(IntEnum):
     ALL = 0
     RED = 64
@@ -42,7 +23,6 @@ class Colors(IntEnum):
     CYAN = 224
 
 
-@enum.unique
 class Patterns(IntEnum):
     CIRCLE = 0
     SPIKE_CIRCLE = 8

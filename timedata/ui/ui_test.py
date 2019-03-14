@@ -1,6 +1,7 @@
 import time, threading, random
 from kivy.app import App
-from . import bang, toggle_button, notes_held
+from . import bang, toggle_button, notes_held, selector
+from timedata.instruments.dmx.laser import constants
 
 
 class UIApp(App):
@@ -9,8 +10,16 @@ class UIApp(App):
             return test_bang()
         if False:
             return test_toggle()
-        if not False:
+        if False:
             return test_notes_held()
+        if not False:
+            return test_selector()
+
+
+def test_selector():
+    s = selector.Selector(constants.Patterns, size=(60, 15))
+    s.bind(enum=print)
+    return s
 
 
 def test_bang():
