@@ -143,6 +143,3 @@ def _from_number(s):
             return int(s[len(prefix):], 16)
 
     return int(s)
-
-
-COLORS = Table()

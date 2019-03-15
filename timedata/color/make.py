@@ -1,5 +1,7 @@
 import functools, numbers, re
-from . import names
+from . import table
+
+COLORS = table.Table()
 
 
 @functools.singledispatch
@@ -28,7 +30,7 @@ def _(c):
 @color.register(str)
 def _(c):
     try:
-        return names.name_to_color(c)
+        return COLORS.name_to_color(c)
     except:
         raise ValueError('Don\'t understand color name "%s"' % c, _COLOR_USAGE)
 
