@@ -17,9 +17,6 @@ class Table:
         self.names = {k: v[0] for k, v in names.items()}
         self.canonical = {_canonical(k): v for k, v in self.colors.items()}
 
-    def get_color(self, name):
-        return self.canonical.get(_canonical(name))
-
     def contains(self, x):
         """Return true if this string or integer tuple appears the table"""
         if isinstance(x, str):
@@ -101,7 +98,7 @@ class Table:
         try:
             n = _from_number(name)
         except:
-            color = self.get_color(name)
+            color = self.canonical.get(_canonical(name))
             if color:
                 return color
             raise ValueError

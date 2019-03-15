@@ -29,13 +29,13 @@ class Colors:
         super().__setattr__('_table', table)
 
     def __getitem__(self, name):
-        value = self._table.get_color(name)
+        value = self._table.to_color(name)
         if value:
             return value
         raise KeyError(name)
 
     def __getattr__(self, name):
-        value = self._table.get_color(name)
+        value = self._table.to_color(name)
         if value:
             return value
         raise AttributeError("COLORS has no attribute '%s'" % name)

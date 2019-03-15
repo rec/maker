@@ -7,7 +7,8 @@ class TableTest(unittest.TestCase):
         colors = table.Table()
         self.assertEqual(colors.to_color('RED'), (255, 0, 0))
         self.assertEqual(colors.to_string((255, 0, 0)), 'Red')
-        self.assertIs(colors.get_color('rod'), None)
+        with self.assertRaises(ValueError):
+            colors.to_color('rod')
 
     def test_all_named_colors(self):
         colors = table.Table()
