@@ -12,7 +12,7 @@ class TableTest(unittest.TestCase):
 
     def test_all_named_colors(self):
         colors = table.Table()
-        all_colors = sorted(colors.colors)
+        all_colors = sorted(colors)
         self.assertEqual(962, len(all_colors))
         actual = all_colors[:4] + all_colors[-4:]
         expected = [

@@ -8,14 +8,14 @@ from . import wikipedia
 
 class Table:
     def __init__(self):
-        self.colors = {k: _to_triplet(v) for k, v in wikipedia.COLORS.items()}
+        self._colors = {k: _to_triplet(v) for k, v in wikipedia.COLORS.items()}
         names = {}
-        for name, value in self.colors.items():
+        for name, value in self._colors.items():
             names.setdefault(value, []).append(name)
         for v in names.values():
             v.sort(key=lambda n: (len(n), n.lower()))
-        self.names = {k: v[0] for k, v in names.items()}
-        self.canonical = {_canonical(k): v for k, v in self.colors.items()}
+        self._names = {k: v[0] for k, v in names.items()}
+        self._canonical = {_canonical(k): v for k, v in self._colors.items()}
 
     def to_string(self, color, use_hex=False):
         """
@@ -34,7 +34,7 @@ class Table:
         if use_hex:
             return '#%02x%02x%02x' % color
 
-        return self.names.get(color) or str(color)
+        return self._names.get(color) or str(color)
 
     def to_color(self, c):
         """Try to coerce the argument into a color - a 3-tuple of numbers-"""
@@ -56,8 +56,8 @@ class Table:
         if isinstance(c, tuple):
             if len(c) > 3:
                 return c[:3]
-            while len(c) < 3:
-                c += (c[-1],)
+            if len(c) < 3:
+                c += (0,) * (3 - len(c))
             return c
 
         raise ValueError('Cannot create color from "%s"' % c)
@@ -77,12 +77,15 @@ class Table:
         c = self.to_color(s)
         return self.to_string(c) if is_numeric else str(c)
 
-    def contains(self, x):
+    def __contains__(self, x):
         """Return true if this string or integer tuple appears the table"""
         if isinstance(x, str):
-            return _canonical(x) in self.canonical
+            return _canonical(x) in self._canonical
         else:
-            return tuple(x) in self.names
+            return tuple(x) in self._names
+
+    def __iter__(self):
+        return iter(self._colors)
 
     def _string_to_color(self, name):
         name = name.lower()
@@ -98,7 +101,7 @@ class Table:
         try:
             n = _from_number(name)
         except:
-            color = self.canonical.get(_canonical(name))
+            color = self._canonical.get(_canonical(name))
             if color:
                 return color
             raise ValueError

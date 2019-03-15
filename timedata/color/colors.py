@@ -47,10 +47,10 @@ class Colors:
         raise AttributeError('Cannot change COLORS')
 
     def __iter__(self):
-        return iter(self._table.colors)
+        return iter(self._table)
 
     def __contains__(self, x):
-        return self._table.contains(x)
+        return x in self._table
 
 
 COLORS = Colors(table.Table())
