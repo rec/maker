@@ -4,7 +4,6 @@ Convert back and forth between colors and string names.
 
 import numbers
 from . import table
-from . table import COLOR_DICT
 
 
 def name_to_color(name):
