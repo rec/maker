@@ -17,13 +17,6 @@ class Table:
         self.names = {k: v[0] for k, v in names.items()}
         self.canonical = {_canonical(k): v for k, v in self.colors.items()}
 
-    def contains(self, x):
-        """Return true if this string or integer tuple appears the table"""
-        if isinstance(x, str):
-            return _canonical(x) in self.canonical
-        else:
-            return tuple(x) in self.names
-
     def to_string(self, color, use_hex=False):
         """
         :param tuple color: an RGB 3-tuple of integer colors
@@ -42,21 +35,6 @@ class Table:
             return '#%02x%02x%02x' % color
 
         return self.names.get(color) or str(color)
-
-    def toggle(self, s):
-        """
-        Toggle back and forth between a name and a tuple representation.
-
-        :param str s: a string which is either a text name, or a tuple-string:
-                      a string with three numbers separated by commas
-
-        :returns: if the string was a text name, return a tuple.  If it's a
-                  tuple-string and it corresponds to a text name, return the
-                  text name, else return the original tuple-string.
-        """
-        is_numeric = ',' in s or s.startswith('0x') or s.startswith('#')
-        c = self.to_color(s)
-        return self.to_string(c) if is_numeric else str(c)
 
     def to_color(self, c):
         """Try to coerce the argument into a color - a 3-tuple of numbers-"""
@@ -83,6 +61,28 @@ class Table:
             return c
 
         raise ValueError('Cannot create color from "%s"' % c)
+
+    def toggle(self, s):
+        """
+        Toggle back and forth between a name and a tuple representation.
+
+        :param str s: a string which is either a text name, or a tuple-string:
+                      a string with three numbers separated by commas
+
+        :returns: if the string was a text name, return a tuple.  If it's a
+                  tuple-string and it corresponds to a text name, return the
+                  text name, else return the original tuple-string.
+        """
+        is_numeric = ',' in s or s.startswith('0x') or s.startswith('#')
+        c = self.to_color(s)
+        return self.to_string(c) if is_numeric else str(c)
+
+    def contains(self, x):
+        """Return true if this string or integer tuple appears the table"""
+        if isinstance(x, str):
+            return _canonical(x) in self.canonical
+        else:
+            return tuple(x) in self.names
 
     def _string_to_color(self, name):
         name = name.lower()
