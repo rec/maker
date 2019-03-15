@@ -25,14 +25,17 @@ class Colors:
         COLOR((0, 255, 255))
     """
 
+    def __init__(self, table):
+        super().__setattr__('_table', table)
+
     def __getitem__(self, name):
-        value = table.get_color(name)
+        value = self._table.get_color(name)
         if value:
             return value
         raise KeyError(name)
 
     def __getattr__(self, name):
-        value = table.get_color(name)
+        value = self._table.get_color(name)
         if value:
             return value
         raise AttributeError("COLORS has no attribute '%s'" % name)
@@ -44,10 +47,10 @@ class Colors:
         raise AttributeError('Cannot change COLORS')
 
     def __iter__(self):
-        return iter(table.COLOR_DICT)
+        return iter(self._table.colors)
 
     def __contains__(self, x):
-        return table.contains(x)
+        return self._table.contains(x)
 
 
-COLORS = Colors()
+COLORS = Colors(table.Table())

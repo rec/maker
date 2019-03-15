@@ -1,15 +1,17 @@
 import unittest
-from timedata.color import table, COLORS
+from timedata.color import table
 
 
 class TableTest(unittest.TestCase):
     def test_simple(self):
-        self.assertEqual(table.get_color('RED'), (255, 0, 0))
-        self.assertEqual(table.get_name((255, 0, 0)), 'Red')
-        self.assertIs(table.get_color('rod'), None)
+        colors = table.Table()
+        self.assertEqual(colors.name_to_color('RED'), (255, 0, 0))
+        self.assertEqual(colors.color_to_name((255, 0, 0)), 'Red')
+        self.assertIs(colors.get_color('rod'), None)
 
     def test_all_named_colors(self):
-        all_colors = sorted(COLORS)
+        colors = table.Table()
+        all_colors = sorted(colors.colors)
         self.assertEqual(962, len(all_colors))
         actual = all_colors[:4] + all_colors[-4:]
         expected = [

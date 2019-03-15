@@ -1,8 +1,7 @@
-from tkinter import ttk
-import threading, tkinter as tk
+import tkinter as tk
+
 from . import selectors, constants, dmx_levels, abs_lfo_fader, one_laser
 from . import six_lasers, six_faders, loose_buttons, top_window
-from timedata.old_ui import selector
 
 
 def make_gui(master):
