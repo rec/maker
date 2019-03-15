@@ -5,8 +5,8 @@ from timedata.color import table
 class TableTest(unittest.TestCase):
     def test_simple(self):
         colors = table.Table()
-        self.assertEqual(colors.name_to_color('RED'), (255, 0, 0))
-        self.assertEqual(colors.color_to_name((255, 0, 0)), 'Red')
+        self.assertEqual(colors.to_color('RED'), (255, 0, 0))
+        self.assertEqual(colors.to_string((255, 0, 0)), 'Red')
         self.assertIs(colors.get_color('rod'), None)
 
     def test_all_named_colors(self):

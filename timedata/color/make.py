@@ -30,7 +30,7 @@ def _(c):
 @color.register(str)
 def _(c):
     try:
-        return COLORS.name_to_color(c)
+        return COLORS.to_color(c)
     except:
         raise ValueError('Don\'t understand color name "%s"' % c, _COLOR_USAGE)
 

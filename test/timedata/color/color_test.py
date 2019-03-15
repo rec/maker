@@ -7,9 +7,9 @@ class NamesTest(unittest.TestCase):
     def test_colors(self):
         t = table.Table()
         self.assertEqual(COLORS.red, (255, 0, 0))
-        self.assertEqual(t.color_to_name((0, 0, 0)), 'Black')
+        self.assertEqual(t.to_string((0, 0, 0)), 'Black')
         self.assertEqual(COLORS.BurntSienna, (0xe9, 0x74, 0x51))
-        self.assertEqual(t.color_to_name((0xe9, 0x74, 0x51)), 'Burnt sienna')
+        self.assertEqual(t.to_string((0xe9, 0x74, 0x51)), 'Burnt sienna')
 
     def test_toggle(self):
         toggle = table.Table().toggle
