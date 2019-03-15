@@ -1,8 +1,11 @@
 from kivy.uix.textinput import TextInput
+from kivy.properties import NumericProperty
 import math
 
 
 class IntEntry(TextInput):
+    value = NumericProperty(0.)
+
     def __init__(self, low=-math.inf, high=math.inf, **kwds):
         if low >= 10:
             # Because otherwise we couldn't ever type the first digit
@@ -14,21 +17,21 @@ class IntEntry(TextInput):
 
         self.low = low
         self.high = high
-        max(abs(low), abs(high))
         digits = math.log10(max(abs(low), abs(high))) + 1
         self._width = int(min(digits, 12)) + (low < 0)
         super().__init__(multiline=False, **kwds)
 
     def insert_text(self, substring, from_undo=False):
-        old = self.text
-        super().insert_text(substring, from_undo=from_undo)
-        if self._validate(self.text):
-            if self.text.startswith('-'):
-                self.text = '-' + self.text[1:].lstrip('0')
-            else:
-                self.text = self.text.lstrip('0') or '0'
-        else:
-            self.text = old
+        c = self.cursor[0]
+        text = self.text[:c] + substring + self.text[c:]
+        if self._validate(text):
+            super().insert_text(substring, from_undo=from_undo)
+
+    def on_text(self, _, text):
+        self.value = int(text or '0')
+
+    def on_value(self, _, value):
+        self.text = str(value)
 
     def _validate(self, text):
         if text == '' or self.low < 0 and text == '-':

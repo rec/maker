@@ -12,8 +12,8 @@ class Selector(Spinner):
     def bind(self, enum=None, **kwds):
         kwds and super().bind(**kwds)
         if enum:
-            def text_callback(_, text):
-                return enum(self.enum_type.make(text))
+            def text_callback(instance, text):
+                return enum(self, self.enum_type.make(text))
 
             super().bind(text=text_callback)
 
