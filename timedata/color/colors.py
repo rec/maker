@@ -1,4 +1,4 @@
-from . import table
+from . import table, normal_table
 
 
 class Colors:
@@ -54,3 +54,4 @@ class Colors:
 
 
 COLORS = Colors(table.Table())
+NORMAL_COLORS = Colors(normal_table.NormalTable())

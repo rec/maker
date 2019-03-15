@@ -26,6 +26,9 @@ class Table:
         the reverse is not true, because to_color is a many-to-one
         function).
         """
+        return self._to_string(color, use_hex) or str(color)
+
+    def _to_string(self, color, use_hex):
         if isinstance(color, list):
             color = tuple(color)
         elif not isinstance(color, tuple):
@@ -34,7 +37,7 @@ class Table:
         if use_hex:
             return '#%02x%02x%02x' % color
 
-        return self._names.get(color) or str(color)
+        return self._names.get(color)
 
     def to_color(self, c):
         """Try to coerce the argument into a color - a 3-tuple of numbers-"""
