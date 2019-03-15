@@ -9,10 +9,9 @@ from . table import COLOR_DICT
 
 def name_to_color(name):
     """
-    :param str name: a string identifying a color.  It might be a color name
-                     from the two lists of color names, juce and classic; or
-                     it might be a list of numeric r, g, b values separated by
-                     commas.
+    :param str name: a string identifying a color.  It might be a color name;
+                     or it might be a list of numeric r, g, b values separated
+                     by commas.
     :returns: a color as an RGB 3-tuple
     """
     def to_color(name):

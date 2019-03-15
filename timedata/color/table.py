@@ -3,7 +3,7 @@ Table of named colors
 """
 
 import itertools, re
-from . import juce, wikipedia
+from . import wikipedia
 
 
 def canonical_name(name):
@@ -47,7 +47,5 @@ A dictionary of every color by name.
 """
 
 COLOR_DICT = {k: to_triplet(v) for k, v in wikipedia.COLORS.items()}
-CANONICAL_DICT = {canonical_name(k): v for k, v in COLOR_DICT.items()}
-
 _TO_NAME = _to_names(COLOR_DICT)
 _TO_COLOR = {canonical_name(k): v for k, v in COLOR_DICT.items()}
