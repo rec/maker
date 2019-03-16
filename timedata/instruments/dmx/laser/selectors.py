@@ -4,8 +4,8 @@ from . import constants
 
 
 class ColorSelector(selector.Selector):
-    def __init__(self, master, **kwds):
-        super().__init__(master, constants.Colors, **kwds)
+    def __init__(self, **kwds):
+        super().__init__(constants.Colors, **kwds)
 
     def add_callback(self, callback):
         @functools.wraps(callback)
@@ -18,10 +18,10 @@ class ColorSelector(selector.Selector):
 
 
 class Selectors:
-    def __init__(self, master, **kwds):
-        super().__init__(master, **kwds)
-        self.colors = ColorSelector(master)
-        self.patterns = selector.Selector(master, constants.Patterns)
+    def __init__(self, **kwds):
+        super().__init__(**kwds)
+        self.colors = ColorSelector()
+        self.patterns = selector.Selector(constants.Patterns)
 
         self.colors.pack()
         self.patterns.pack()

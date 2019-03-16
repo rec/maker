@@ -4,8 +4,8 @@ from timedata.old_ui import resizable
 
 
 class SixFaders(resizable.Frame):
-    def __init__(self, master, **kwds):
-        super().__init__(master, kwds)
+    def __init__(self, **kwds):
+        super().__init__(kwds)
         self.faders = []
         channels = list(constants.Channels)[2:]
         for i, channel in enumerate(channels):

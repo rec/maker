@@ -6,8 +6,8 @@ DEFAULT_NAMES = 'A1', 'B17', 'C33', 'D49', 'E65', 'F73'
 
 
 class TopWindow(resizable.Frame):
-    def __init__(self, master, **kwds):
-        super().__init__(master, **kwds)
+    def __init__(self, **kwds):
+        super().__init__(**kwds)
         self.six_lasers = six_lasers.SixLasers(self)
         self.six_faders = six_faders.SixFaders(self)
         self.loose_buttons = loose_buttons.LooseButtons(self)

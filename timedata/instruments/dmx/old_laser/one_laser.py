@@ -6,8 +6,8 @@ from .dmx_levels import DMXLevels
 class OneLaser(resizable.Frame):
     OFF, ON = 'X', 'O'
 
-    def __init__(self, master, text, callback=None, **kwds):
-        super().__init__(master, **kwds)
+    def __init__(self, text, callback=None, **kwds):
+        super().__init__(**kwds)
         self.callback = callback
 
         top = tk.Frame(self)

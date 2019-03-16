@@ -16,8 +16,8 @@ class DMXLevels(resizable.Canvas):
         Channels.COLOR: 'black',
     }
 
-    def __init__(self, master, **kwds):
-        super().__init__(master, **kwds)
+    def __init__(self, **kwds):
+        super().__init__(**kwds)
         self.levels = {c: 127 for c in Channels}
         for channel in Channels:
             c = self.CHANNEL_COLORS[channel]
