@@ -3,19 +3,12 @@ Table of named colors
 """
 
 import itertools, numbers, re
-from . import wikipedia
+from . import tables
 
 
 class Table:
-    def __init__(self):
-        self._colors = {k: _to_triplet(v) for k, v in wikipedia.COLORS.items()}
-        names = {}
-        for name, value in self._colors.items():
-            names.setdefault(value, []).append(name)
-        for v in names.values():
-            v.sort(key=lambda n: (len(n), n.lower()))
-        self._names = {k: v[0] for k, v in names.items()}
-        self._canonical = {_canonical(k): v for k, v in self._colors.items()}
+    def __init__(self, normal=True):
+        self.normal = normal
 
     def to_string(self, color, use_hex=False):
         """
@@ -26,44 +19,47 @@ class Table:
         the reverse is not true, because to_color is a many-to-one
         function).
         """
-        return self._to_string(color, use_hex) or str(color)
-
-    def _to_string(self, color, use_hex):
-        if isinstance(color, list):
-            color = tuple(color)
-        elif not isinstance(color, tuple):
-            raise ValueError('Not a color')
+        if self.normal:
+            c = tables.unscale(color)
+        else:
+            color = c = tuple(color)
 
         if use_hex:
-            return '#%02x%02x%02x' % color
+            return '#%02x%02x%02x' % c
 
-        return self._names.get(color)
+        return tables.get_name(c) or str(color)
 
     def to_color(self, c):
         """Try to coerce the argument into a color - a 3-tuple of numbers-"""
-        if isinstance(c, str):
-            try:
-                return self._string_to_color(c)
-            except:
-                raise ValueError('Unknown color name %s' % str(c))
-
         if isinstance(c, numbers.Number):
             return c, c, c
-
         if not c:
             raise ValueError('Cannot create color from empty "%s"' % c)
-
-        if isinstance(c, list):
-            c = tuple(c)
-
         if isinstance(c, tuple):
-            if len(c) > 3:
-                return c[:3]
-            if len(c) < 3:
-                c += (0,) * (3 - len(c))
             return c
+        if isinstance(c, list):
+            return tuple(c)
+        if not isinstance(c, str):
+            raise ValueError('Do not understand color type %s' % c)
 
-        raise ValueError('Cannot create color from "%s"' % c)
+        colors = tables.get_color(c)
+        if colors:
+            return colors[self.normal]
+
+        if ',' in c:
+            c = c.lstrip('(').rstrip(')').lstrip('[').rstrip(']')
+            return tuple(_from_number(i) for i in c.split(','))
+
+        h = _from_hex(c)
+        if h is not None:
+            t = tables.to_triplet(h)
+            return tables.scale(t) if self.normal else t
+
+        try:
+            n = float(c) if self.normal else int(c)
+            return n, n, n
+        except:
+            raise ValueError('Do not understand color name %s' % c)
 
     def toggle(self, s):
         """
@@ -81,51 +77,24 @@ class Table:
         return self.to_string(c) if is_numeric else str(c)
 
     def __contains__(self, x):
-        """Return true if this string or integer tuple appears the table"""
-        if isinstance(x, str):
-            return _canonical(x) in self._canonical
-        else:
-            return tuple(x) in self._names
+        """Return true if this string or integer tuple appears in the table"""
+        try:
+            if not isinstance(x, str):
+                x = self.to_string(x)
+            return bool(tables.get_colors(x))
+        except:
+            return False
 
     def __iter__(self):
-        return iter(self._colors)
-
-    def _string_to_color(self, name):
-        name = name.lower()
-        if ',' in name:
-            if name.startswith('(') and name.endswith(')'):
-                name = name[1:-1]
-            if name.startswith('[') and name.endswith(']'):
-                name = name[1:-1]
-
-            r, g, b = name.split(',')
-            return _from_number(r), _from_number(g), _from_number(b)
-
-        try:
-            n = _from_number(name)
-        except:
-            color = self._canonical.get(_canonical(name))
-            if color:
-                return color
-            raise ValueError
-
-        return _to_triplet(n)
+        return tables.color_names()
 
 
-def _to_triplet(color):
-    rg, b = color // 256, color % 256
-    r, g = rg // 256, rg % 256
-    return r, g, b
-
-
-def _canonical(name):
-    return name.replace(' ', '').lower()
-
-
-def _from_number(s):
-    s = s.strip()
+def _from_hex(s):
     for prefix in '0x', '#':
         if s.startswith(prefix):
             return int(s[len(prefix):], 16)
 
-    return int(s)
+
+def _from_number(s):
+    h = _from_hex(s)
+    return float(s) if h is None else h

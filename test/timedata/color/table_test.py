@@ -4,7 +4,7 @@ from timedata.color import table
 
 class TableTest(unittest.TestCase):
     def test_simple(self):
-        colors = table.Table()
+        colors = table.Table(False)
         self.assertEqual(colors.to_color('RED'), (255, 0, 0))
         self.assertEqual(colors.to_string((255, 0, 0)), 'Red')
         with self.assertRaises(ValueError):
@@ -26,3 +26,10 @@ class TableTest(unittest.TestCase):
             'Zomp']
 
         self.assertEqual(actual, expected)
+
+    def test_normal(self):
+        colors = table.Table()
+        self.assertEqual(colors.to_color('RED'), (1, 0, 0))
+        self.assertEqual(colors.to_string((1, 0, 0)), 'Red')
+        with self.assertRaises(ValueError):
+            colors.to_color('rod')

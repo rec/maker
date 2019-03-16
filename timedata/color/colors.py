@@ -1,4 +1,4 @@
-from . import table, normal_table
+from . import table
 
 
 class Colors:
@@ -28,23 +28,26 @@ class Colors:
     def __init__(self, table):
         super().__setattr__('_table', table)
 
+    def to_string(self, color):
+        return self._table.to_string(color)
+
     def __getitem__(self, name):
-        value = self._table.to_color(name)
-        if value:
-            return value
-        raise KeyError(name)
+        try:
+            return self._table.to_color(name)
+        except ValueError:
+            raise KeyError(name)
 
     def __getattr__(self, name):
-        value = self._table.to_color(name)
-        if value:
-            return value
-        raise AttributeError("COLORS has no attribute '%s'" % name)
+        try:
+            return self._table.to_color(name)
+        except ValueError:
+            raise AttributeError(name)
 
     def __setitem__(self, name, value):
-        raise KeyError('Cannot change COLORS')
+        raise KeyError(name)
 
     def __setattr__(self, name, value):
-        raise AttributeError('Cannot change COLORS')
+        raise AttributeError(name)
 
     def __iter__(self):
         return iter(self._table)
@@ -53,5 +56,5 @@ class Colors:
         return x in self._table
 
 
-COLORS_255 = Colors(table.Table())
-COLORS = Colors(normal_table.NormalTable())
+COLORS = Colors(table.Table())
+COLORS_255 = Colors(table.Table(normal=False))
