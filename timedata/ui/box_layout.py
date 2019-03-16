@@ -3,8 +3,8 @@ from kivy.uix import boxlayout
 
 
 class BoxLayout(boxlayout.BoxLayout):
-    def add_all(self, *entries):
-        is_vertical = self.orientation == 'vertical'
+    def add_all(self, *entries, other=1):
+        vertical = self.orientation == 'vertical'
 
         total = 0
         items = []
@@ -16,7 +16,7 @@ class BoxLayout(boxlayout.BoxLayout):
                 weight = 1 - total
             else:
                 total += weight
-            item.size_hint = (1, weight) if is_vertical else (weight, 1)
+            item.size_hint = (other, weight) if vertical else (weight, other)
 
         for item in items:
             self.add_widget(item)

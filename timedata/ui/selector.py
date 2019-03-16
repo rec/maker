@@ -8,6 +8,9 @@ class Selector(Spinner):
             text=enum_type.__name__,
             values=[e.pretty_string() for e in enum_type],
             **kwds)
+        on_enum = getattr(self, 'on_enum', None)
+        if on_enum:
+            self.bind(enum=on_enum)
 
     def bind(self, enum=None, **kwds):
         kwds and super().bind(**kwds)
