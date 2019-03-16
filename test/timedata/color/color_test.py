@@ -1,14 +1,14 @@
 import unittest
 
-from timedata.color import table, COLORS
+from timedata.color import table, COLORS_255
 
 
 class NamesTest(unittest.TestCase):
     def test_colors(self):
         t = table.Table()
-        self.assertEqual(COLORS.red, (255, 0, 0))
+        self.assertEqual(COLORS_255.red, (255, 0, 0))
         self.assertEqual(t.to_string((0, 0, 0)), 'Black')
-        self.assertEqual(COLORS.BurntSienna, (0xe9, 0x74, 0x51))
+        self.assertEqual(COLORS_255.BurntSienna, (0xe9, 0x74, 0x51))
         self.assertEqual(t.to_string((0xe9, 0x74, 0x51)), 'Burnt sienna')
 
     def test_toggle(self):

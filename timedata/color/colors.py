@@ -53,5 +53,5 @@ class Colors:
         return x in self._table
 
 
-COLORS = Colors(table.Table())
-NORMAL_COLORS = Colors(normal_table.NormalTable())
+COLORS_255 = Colors(table.Table())
+COLORS = Colors(normal_table.NormalTable())

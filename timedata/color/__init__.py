@@ -1,1 +1,1 @@
-from . colors import COLORS
+from . colors import COLORS, COLORS_255
