@@ -45,14 +45,15 @@ class NotesHeld(Widget):
 
         if not counter.element:
             pos = self.note_position[note]
-            with self.canvas.before:
+            with self.canvas:
                 counter.element = self.shape(pos=pos, size=self.note_size)
 
         elif counter.count <= 0:
             del self.notes_held[note]
-            self.canvas.before.remove(counter.element)
+            self.canvas.remove(counter.element)
 
     def _compute_note_positions(self):
+        x, y = self.pos
         width, height = self.size
         w = (width - self.padding - self.frame_padding) // self.columns
         h = (height - self.padding - self.frame_padding) // self.rows
@@ -60,18 +61,18 @@ class NotesHeld(Widget):
         if not m:
             return
 
-        dx = (width - m * self.columns + self.padding) // 2
-        dy = (height - m * self.rows + self.padding) // 2
+        dx = x + (width - m * self.columns + self.padding) // 2
+        dy = y + (height - m * self.rows + self.padding) // 2
         size = m - self.padding
         self.note_size = size, size
 
         for note in range(self.low, self.high + 1):
-            y, x = divmod(note - self.low, self.columns)
-            self.note_position[note] = dx + x * m, dy + y * m
+            ny, nx = divmod(note - self.low, self.columns)
+            self.note_position[note] = dx + nx * m, dy + ny * m
 
     def _rewrite_notes(self):
-        self.canvas.before.clear()
-        with self.canvas.before:
+        self.canvas.clear()
+        with self.canvas:
             graphics.Color(*self.color)
 
         notes_held, self.notes_held = self.notes_held, {}

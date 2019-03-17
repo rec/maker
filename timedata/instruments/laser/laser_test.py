@@ -1,15 +1,22 @@
 import time, threading, random
 from kivy.app import App
-from . import constants, abs_lfo_fader, selectors
+from . import constants, abs_lfo_fader, selectors, dmx_levels
 
 
 class UIApp(App):
     def build(self):
         if False:
+            return test_dmx_levels()
+
+        if False:
             return test_abs_lfo_master()
 
-        if not False:
+        if False:
             return test_selectors()
+
+
+def test_dmx_levels():
+    return dmx_levels.DMXLevels()
 
 
 def test_abs_lfo_master():

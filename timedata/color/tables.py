@@ -28,7 +28,7 @@ def unscale(color):
 
 
 def _to_canonical(name):
-    return name.replace(' ', '').lower()
+    return ''.join(i for i in name.lower() if i not in _DISALLOWED)
 
 
 def _make_tables():
@@ -49,4 +49,5 @@ def _make_tables():
     return colors, names, canonical
 
 
+_DISALLOWED = set(' _-\'".=')
 _COLORS, _NAMES, _CANONICAL = _make_tables()

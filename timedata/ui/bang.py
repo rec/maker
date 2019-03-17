@@ -8,9 +8,9 @@ STATES = 'normal', 'down'
 
 class Bang(Label):
     def on_size(self, *args):
-        self.canvas.before.clear()
+        self.canvas.clear()
         if self._state:
-            with self.canvas.before:
+            with self.canvas:
                 graphics.Color(0, 1, 1)
                 graphics.Rectangle(pos=self.pos, size=self.size)
 
