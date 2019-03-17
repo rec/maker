@@ -8,7 +8,7 @@ from timedata.color import COLORS
 class DMXLevels(Widget):
     def __init__(self, **kwds):
         super().__init__(**kwds)
-        self.levels = {c: 60 * c for c in Channels}
+        self.levels = {c: 20 * (1 + c) for c in Channels}
         self.rects = []
         with self.canvas:
             for channel in Channels:
@@ -23,7 +23,7 @@ class DMXLevels(Widget):
             self.levels[channel] = level
             self._draw_level(channel, level)
 
-    def on_size(self):
+    def on_size(self, *args):
         with self.lock:
             for channel, level in self.levels.items():
                 self._draw_level(channel, level)
@@ -31,9 +31,9 @@ class DMXLevels(Widget):
     def _draw_level(self, channel, level):
         width, height = self.size
         w = width / len(self.levels)
-        h = height * (255 - level) / 255
+        h = height * level / 255
         rect = self.rects[channel]
-        rect.pos, rect.size = (channel * w, h), (w, height - h)
+        rect.pos, rect.size = (channel * w, 0), (w, h)
 
 
 _CHANNEL_COLORS = {
@@ -45,5 +45,5 @@ _CHANNEL_COLORS = {
     Channels.Z_ROT: COLORS.blue,
     Channels.H_POS: COLORS.red,
     Channels.V_POS: COLORS.green,
-    Channels.COLOR: COLORS.black,
+    Channels.COLOR: COLORS.dark_gray,
 }

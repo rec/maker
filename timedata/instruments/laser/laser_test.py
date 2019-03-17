@@ -5,7 +5,7 @@ from . import constants, abs_lfo_fader, selectors, dmx_levels
 
 class UIApp(App):
     def build(self):
-        if False:
+        if not False:
             return test_dmx_levels()
 
         if False:
