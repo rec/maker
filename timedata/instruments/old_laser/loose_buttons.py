@@ -1,12 +1,11 @@
-import tkinter as tk
 from . import constants, abs_lfo_fader
-from timedata.old_ui import resizable, toggle_button
+from timedata.ui import toggle_button
 
 
-class LooseButtonsOLD(resizable.Frame):
+class LooseButtonsOLD:
     def __init__(self, **kwds):
         super().__init__(kwds)
-        self.blackout = tk.Button(self, text='BLACKOUT')
+        # self.blackout = tk.Button(self, text='BLACKOUT')
         self.left_right = toggle_button.ToggleButton(self, 'Left', 'Right')
         self.down_up = toggle_button.ToggleButton(self, 'Down', 'Up')
         self.blackout.grid(row=0, column=0)
@@ -14,9 +13,9 @@ class LooseButtonsOLD(resizable.Frame):
         self.down_up.grid(row=0, column=2)
 
 
-class LooseButtons(tk.Frame):
+class LooseButtons:
     def __init__(self, **kwds):
         super().__init__(kwds)
-        self.blackout = tk.Button(self, text='BLACKOUT')
+        # self.blackout = tk.Button(self, text='BLACKOUT')
         # self.blackout.grid(row=0, column=0)
         self.blackout.pack()

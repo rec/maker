@@ -1,11 +1,14 @@
 import time, threading, random
 from kivy.app import App
-from . import constants, abs_lfo_fader, selectors, dmx_levels
+from . import constants, abs_lfo_fader, selectors, dmx_levels, one_laser
 
 
 class UIApp(App):
     def build(self):
         if not False:
+            return test_one_laser()
+
+        if False:
             return test_dmx_levels()
 
         if False:
@@ -13,6 +16,10 @@ class UIApp(App):
 
         if False:
             return test_selectors()
+
+
+def test_one_laser():
+    return one_laser.OneLaser('A 1')
 
 
 def test_dmx_levels():

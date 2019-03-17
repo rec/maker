@@ -1,9 +1,7 @@
-import tkinter as tk
 from . import constants, abs_lfo_fader
-from timedata.old_ui import resizable
 
 
-class SixFaders(resizable.Frame):
+class SixFaders:
     def __init__(self, **kwds):
         super().__init__(kwds)
         self.faders = []
@@ -11,5 +9,5 @@ class SixFaders(resizable.Frame):
         for i, channel in enumerate(channels):
             fader = abs_lfo_fader.AbsLfoFader(
                 self, channel.pretty_string(), print)
-            fader.pack(side=tk.LEFT)
+            # fader.pack(side=tk.LEFT)
             self.faders.append(fader)
