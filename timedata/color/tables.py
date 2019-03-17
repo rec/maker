@@ -57,7 +57,10 @@ def _make_tables():
 
     juce_tables = [{}, {}]
     for k, v in juce.COLORS.items():
-        juce_tables[k in juce.SECONDARY_NAMES][k.capitalize()] = v
+        table = juce_tables[k in juce.SECONDARY_NAMES]
+        k = k.capitalize()
+        table[k] = v
+        table[k.replace('grey', 'gray')] = v
 
     for i in 1, 0:
         jcolors, jnames, jcanonical = _one_table(juce_tables[i])

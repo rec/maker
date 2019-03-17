@@ -521,7 +521,6 @@ SECONDARY_NAMES = {
     'dodger blue 1',
     'fuchsia',
     'gold 1',
-    'grey',
     'green 1',
     'honeydew 1',
     'ivory 1',
