@@ -1,4 +1,4 @@
-from . import wikipedia
+from . import juce, wikipedia
 
 
 def get_color(c):
@@ -31,9 +31,12 @@ def _to_canonical(name):
     return ''.join(i for i in name.lower() if i not in _DISALLOWED)
 
 
-def _make_tables():
+_DISALLOWED = set(' _-\'".=')
+
+
+def _one_table(color_list):
     colors, names, canonical = {}, {}, {}
-    for name, color in wikipedia.COLORS.items():
+    for name, color in color_list.items():
         color255 = to_triplet(color)
         cname = _to_canonical(name)
         colors[name] = canonical[cname] = color255, scale(color255)
@@ -45,6 +48,22 @@ def _make_tables():
 
     for k, v in names.items():
         names[k] = sorted(v, key=name_key)[0]
+
+    return colors, names, canonical
+
+
+def _make_tables():
+    colors, names, canonical = _one_table(wikipedia.COLORS)
+
+    juce_tables = [{}, {}]
+    for k, v in juce.COLORS.items():
+        juce_tables[k in juce.SECONDARY_NAMES][k.capitalize()] = v
+
+    for i in 1, 0:
+        jcolors, jnames, jcanonical = _one_table(juce_tables[i])
+        colors.update(jcolors)
+        names.update(jnames)
+        canonical.update(jcanonical)
 
     return colors, names, canonical
 

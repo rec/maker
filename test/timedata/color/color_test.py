@@ -8,8 +8,8 @@ class NamesTest(unittest.TestCase):
         t = table.Table(False)
         self.assertEqual(COLORS_255.red, (255, 0, 0))
         self.assertEqual(t.to_string((0, 0, 0)), 'Black')
-        self.assertEqual(COLORS_255.BurntSienna, (0xe9, 0x74, 0x51))
-        self.assertEqual(t.to_string((0xe9, 0x74, 0x51)), 'Burnt sienna')
+        self.assertEqual(COLORS_255.BurntSienna, (0x8a, 0x36, 0x0f))
+        self.assertEqual(t.to_string((0x8a, 0x36, 0x0f)), 'Burnt sienna')
 
     def test_toggle_255(self):
         toggle = table.Table(False).toggle
