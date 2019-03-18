@@ -1,4 +1,6 @@
-## Make and control Python objects from JSON or YAML files
+## Control all the things.
+
+# Random notes follow
 
 We want to construct a hierarchical collection of Python objects from a data
 file.
