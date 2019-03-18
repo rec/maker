@@ -8,11 +8,11 @@ class UIApp(App):
     def build(self):
         if False:
             return test_int_slider()
-        if False:
+        if not False:
             return test_bang()
         if False:
             return test_toggle()
-        if not False:
+        if False:
             return test_notes_held()
         if False:
             return test_selector()
