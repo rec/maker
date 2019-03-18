@@ -1,11 +1,15 @@
 import time, threading, random
 from kivy.app import App
-from . import constants, abs_lfo_fader, selectors, dmx_levels, one_laser
+from . import (
+    constants, abs_lfo_fader, selectors, dmx_levels, one_laser, loose_buttons)
 
 
 class UIApp(App):
     def build(self):
         if not False:
+            return test_loose_buttons()
+
+        if False:
             return test_one_laser()
 
         if False:
@@ -16,6 +20,10 @@ class UIApp(App):
 
         if False:
             return test_selectors()
+
+
+def test_loose_buttons():
+    return loose_buttons.LooseButtons()
 
 
 def test_one_laser():
