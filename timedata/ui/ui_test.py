@@ -6,9 +6,9 @@ from timedata.instruments.laser import constants
 
 class UIApp(App):
     def build(self):
-        if False:
-            return test_int_slider()
         if not False:
+            return test_int_slider()
+        if False:
             return test_bang()
         if False:
             return test_toggle()
