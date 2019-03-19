@@ -1,5 +1,8 @@
 ## Control all the things.
 
+Still pre-alpha, this takes my work from Bibliopixel and generalizes it to control any real-time thing 
+from any other.
+
 # Random notes follow
 
 We want to construct a hierarchical collection of Python objects from a data
