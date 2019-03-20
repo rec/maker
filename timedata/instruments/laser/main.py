@@ -4,7 +4,7 @@ from . import (
     constants, abs_lfo_fader, selectors, dmx_levels, one_laser, loose_buttons)
 
 
-class UIApp(App):
+class Main(App):
     def build(self):
         if False:
             return test_loose_buttons()
@@ -12,10 +12,10 @@ class UIApp(App):
         if False:
             return test_one_laser()
 
-        if False:
+        if not False:
             return test_dmx_levels()
 
-        if not False:
+        if False:
             return test_abs_lfo_master()
 
         if False:
@@ -54,4 +54,4 @@ def _bind(name, item):
 
 
 if __name__ == '__main__':
-    UIApp().run()
+    Main().run()

@@ -14,5 +14,5 @@ install:
 - pip install -r test_requirements.txt
 
 script:
-- flake8
+- flake8 timedata test
 - pytest test
