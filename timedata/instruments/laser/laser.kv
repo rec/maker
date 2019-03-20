@@ -1,0 +1,16 @@
+#:kivy 1.0
+
+<Laser>:
+    label: my_custom_label
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+
+        Button:
+            text: 'laser.kv: button.text: root.info is: ' + root.info
+            on_press: root.do_action()
+
+        Label:
+            id: my_custom_label
+            text: 'laser.kv: This is label.text'
