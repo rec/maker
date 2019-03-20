@@ -6,7 +6,7 @@ from . import (
 
 class UIApp(App):
     def build(self):
-        if not False:
+        if False:
             return test_loose_buttons()
 
         if False:
@@ -15,7 +15,7 @@ class UIApp(App):
         if False:
             return test_dmx_levels()
 
-        if False:
+        if not False:
             return test_abs_lfo_master()
 
         if False:
