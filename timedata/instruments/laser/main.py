@@ -1,18 +1,23 @@
 import time, threading, random
 from kivy.app import App
 from . import (
-    constants, abs_lfo_fader, selectors, dmx_levels, one_laser, loose_buttons)
+    abs_lfo_fader, constants, selectors, dmx_levels, one_laser, loose_buttons)
+
+IMG = 'Ritchford_Tintaglian+Triangles_2015.png'
 
 
 class Main(App):
+    icon = 'images/' + IMG
+    title = 'Gesture Laser 0.0001'
+
     def build(self):
         if False:
             return test_loose_buttons()
 
-        if False:
+        if not False:
             return test_one_laser()
 
-        if not False:
+        if False:
             return test_dmx_levels()
 
         if False:
