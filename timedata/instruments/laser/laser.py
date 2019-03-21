@@ -1,11 +1,13 @@
 from kivy.lang import Builder
 from kivy.app import App
 from kivy.uix.label import Label
+from . wombat import Wombat
+from . wombat import Wombat as Wombat2
 
 
 DATA = """
 <MyLabel1>
-    text: 'My label 1'
+    text: 'MyLabel1'
 
 MyLabel1:
 """
@@ -23,6 +25,11 @@ class MainApp(App):
             return Builder.load_string(DATA)
         except:
             print('MyLabel1 fails')
+        try:
+            return Builder.load_string(DATA.replace('MyLabel1', 'Wombat'))
+        except:
+            print('Wombat fails')
+
         return Builder.load_string(DATA.replace('1', '2'))
 
 

@@ -3,21 +3,23 @@ from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 
-from timedata.ui.toggle_button import ToggleButton
+from timedata.ui.switch_button import SwitchButton
 from .dmx_levels import DMXLevels
+from kiva.properties import StringProperty
 
 
-class OneLaserOld(BoxLayout):
+class OneLaser(BoxLayout):
+    StringProperty()
     OFF, ON = 'X', 'O'
 
-    def __init__(self, text, **kwds):
+    def __init__(self, **kwds):
         super().__init__(orientation='vertical', **kwds)
-        self.enable = ToggleButton(self.OFF, self.ON)
+        self.enable = SwitchButton(self.OFF, self.ON)
         top_left = AnchorLayout(anchor_y='top', anchor_x='left')
         top_left.add_widget(self.enable)
         self.add_widget(top_left)
 
-        label = Label(text=text)
+        label = Label()  # text=text
         top_right = AnchorLayout(anchor_y='top', anchor_x='right')
         top_right.add_widget(label)
         self.add_widget(top_right)
@@ -26,12 +28,6 @@ class OneLaserOld(BoxLayout):
         bottom_center = AnchorLayout(anchor_y='bottom')
         bottom_center.add_widget(self.levels)
         self.add_widget(bottom_center)
-
-
-class OneLaser(BoxLayout):
-    def __init__(self, *args, **kwds):
-        print('OneLaser!', args, kwds)
-        super().__init__(*args, **kwds)
 
 
 LASER_DATA = """

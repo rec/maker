@@ -1,5 +1,4 @@
 import threading, time
-from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.label import Label
 from kivy.properties import NumericProperty
 from kivy import graphics

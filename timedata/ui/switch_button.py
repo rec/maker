@@ -1,7 +1,7 @@
 from kivy.uix import togglebutton
 
 
-class ToggleButton(togglebutton.ToggleButton):
+class SwitchButton(togglebutton.ToggleButton):
     def __init__(self, off, on='', **kwds):
         super().__init__(text=off, **kwds)
         self.texts = off, on
