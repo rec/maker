@@ -1,10 +1,9 @@
-import collections, functools, sys, threading
+import threading
 from . extractor import Extractor
 from . routing import ActionList, Routing
 
 # from .. util.log_errors import LogErrors
-from .. util import flatten, log
-from .. util import runnable
+from .. util import log, runnable
 
 
 class Control(runnable.Runnable):

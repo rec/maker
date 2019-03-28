@@ -1,4 +1,4 @@
-import math, random, threading
+import threading
 from kivy.uix.widget import Widget
 from kivy import graphics
 from .constants import Channels

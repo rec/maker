@@ -1,4 +1,4 @@
-import os, platform, unittest
+import os, unittest
 from . import_all import import_all
 
 IS_TRAVIS = os.getenv('TRAVIS', '').lower().startswith('t')

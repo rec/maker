@@ -1,4 +1,4 @@
-import fractions, time, unittest
+import fractions, time
 from timedata.control import midi
 from argparse import Namespace
 from unittest import mock

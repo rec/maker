@@ -1,6 +1,4 @@
-import functools
 from timedata.ui import selector, box_layout
-from timedata.color import COLORS
 from . import constants
 
 

@@ -1,5 +1,5 @@
 from . import log
-import threading, time, traceback, queue
+import threading, traceback
 
 
 class Runnable:

@@ -1,5 +1,5 @@
-import logging, sys
-from logging import DEBUG, INFO, WARNING, ERROR
+import logging
+from logging import DEBUG, INFO, WARNING, ERROR  # noqa: F401
 
 logging.basicConfig(
     level=logging.DEBUG,

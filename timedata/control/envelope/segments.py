@@ -1,6 +1,3 @@
-import statistics
-
-
 class Segments(list):
     """
     A list of [level, time] pairs.

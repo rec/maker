@@ -1,7 +1,6 @@
-import time, threading, random
+# import time, threading, random
 from kivy.app import App
-from . import (
-    abs_lfo_fader, constants, selectors, dmx_levels, one_laser, loose_buttons)
+from . import abs_lfo_fader, selectors, dmx_levels, one_laser, loose_buttons
 
 IMG = 'Ritchford_Tintaglian+Triangles_2015.png'
 

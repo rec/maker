@@ -2,7 +2,7 @@
 Table of named colors
 """
 
-import itertools, numbers, re
+import numbers
 from . import tables
 
 

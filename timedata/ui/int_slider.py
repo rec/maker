@@ -1,5 +1,6 @@
 from kivy.uix.label import Label
 from kivy.uix.slider import Slider
+# from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import NumericProperty
 from .box_layout import BoxLayout
 from .int_entry import IntEntry

@@ -1,4 +1,4 @@
-import importlib, os, setuptools, subprocess, sys
+import os, setuptools, sys
 from setuptools.command.test import test as TestCommand
 
 
@@ -50,13 +50,14 @@ INSTALL_REQUIRES = open('requirements.txt').read().splitlines()
 TESTS_REQUIRE = open('test_requirements.txt').read().splitlines()
 
 PACKAGES = setuptools.find_packages(exclude=['test'])
+
 CMDCLASS = {
     'coverage': RunCoverage,
     'test': RunTests,
 }
 
 CLASSIFIERS = [
-    'Development Status :: 5 - Production/Stable',
+    'Development Status :: 3 - Alpha',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
@@ -80,7 +81,7 @@ if sversion < SETUPTOOLS_VERSION:
     raise ValueError(SETUPTOOLS_ERROR % (sversion, SETUPTOOLS_VERSION))
 
 setuptools.setup(
-    name='timedata',
+    name=NAME,
     version=VERSION,
     description='control all the things',
     author='Tom Ritchford',

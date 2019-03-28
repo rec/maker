@@ -1,6 +1,5 @@
 import threading, time
 from kivy.uix.label import Label
-from kivy.properties import NumericProperty
 from kivy import graphics
 
 STATES = 'normal', 'down'

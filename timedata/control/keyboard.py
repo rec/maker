@@ -1,4 +1,4 @@
-import getpass, platform, sys, threading
+import getpass, platform, sys
 from .. util import log
 from . control import ExtractedControl
 

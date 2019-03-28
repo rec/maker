@@ -1,5 +1,4 @@
 from kivy.uix.button import Button
-from kivy.uix.button import Button
 from timedata.ui import box_layout, switch_button
 
 

@@ -1,4 +1,4 @@
-import copy, inspect, functools
+import inspect, functools
 from inspect import Parameter
 ARGS = '_args'
 KWDS = '_kwds'

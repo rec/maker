@@ -1,8 +1,8 @@
 from kivy.lang import Builder
 from kivy.app import App
 from kivy.uix.label import Label
-from . wombat import Wombat
-from . wombat import Wombat as Wombat2
+# from . wombat import Wombat
+# from . wombat import Wombat as Wombat2
 
 
 DATA = """
