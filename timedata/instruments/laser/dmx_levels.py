@@ -1,8 +1,8 @@
 import threading
+from nc import COLORS
 from kivy.uix.widget import Widget
 from kivy import graphics
 from .constants import Channels
-from timedata.color import COLORS
 
 
 class DMXLevels(Widget):
