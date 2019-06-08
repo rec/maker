@@ -1,5 +1,6 @@
 # python-rtmidi  # Must be installed first
 # mido
+kivy
 loady
 nc
 pyyaml

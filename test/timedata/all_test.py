@@ -1,9 +1,7 @@
 import import_all
 
 
-class ImportAllTest(import_all.TestCase):
-    pass
+class ImportAllTest(import_all.ImportAllTest):
+    CATCH_EXCEPTIONS = True
 
-
-# Too many bad items
-del ImportAllTest
+    EXCLUDE = 'timedata.instruments.laser.**'
