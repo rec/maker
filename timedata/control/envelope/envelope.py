@@ -5,9 +5,22 @@ ENVELOPE_PATH = 'bibliopixel.control.envelope.functions'
 
 
 class Envelope:
-    def __init__(self, enabled=True, base_value=0, period=None, phase=0,
-                 offset=0, scale=1, loops=0, symmetry=0.5, reverse=False,
-                 serpentine=False, power=1, frequency=None, duty_cycle=0.5):
+    def __init__(
+        self,
+        enabled=True,
+        base_value=0,
+        period=None,
+        phase=0,
+        offset=0,
+        scale=1,
+        loops=0,
+        symmetry=0.5,
+        reverse=False,
+        serpentine=False,
+        power=1,
+        frequency=None,
+        duty_cycle=0.5,
+    ):
         self.enabled = enabled
         self.base_value = base_value
         self.phase = phase

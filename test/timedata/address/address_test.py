@@ -22,8 +22,18 @@ class AddressTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             Address('ab[cd()]')
         BAD = (
-            '.a.b.', '.a.bar() = 3', 'a.', 'a..b', 'a.()', 'a.[2]',
-            'a[2]b', 'a()b', 'a[()cd]', '!', '?')
+            '.a.b.',
+            '.a.bar() = 3',
+            'a.',
+            'a..b',
+            'a.()',
+            'a.[2]',
+            'a[2]b',
+            'a()b',
+            'a[()cd]',
+            '!',
+            '?',
+        )
         for i in BAD:
             with self.assertRaises(ValueError):
                 Address(i)

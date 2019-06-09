@@ -6,9 +6,17 @@ PADDING = 4
 
 
 class NotesHeld(Widget):
-    def __init__(self, columns=16, low=0, high=127, padding=PADDING,
-                 color=(1, 1, 1), frame_padding=4,
-                 shape=graphics.Ellipse, **kwds):
+    def __init__(
+        self,
+        columns=16,
+        low=0,
+        high=127,
+        padding=PADDING,
+        color=(1, 1, 1),
+        frame_padding=4,
+        shape=graphics.Ellipse,
+        **kwds
+    ):
         super().__init__(**kwds)
         assert high >= low
         self.low = low

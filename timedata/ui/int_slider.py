@@ -1,5 +1,6 @@
 from kivy.uix.label import Label
 from kivy.uix.slider import Slider
+
 # from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import NumericProperty
 from .box_layout import BoxLayout
@@ -14,7 +15,7 @@ SLIDER_KWDS = {
 
 
 class IntSlider(BoxLayout):
-    value = NumericProperty(0.)
+    value = NumericProperty(0.0)
 
     def __init__(self, label, low=0, high=127, **kwds):
         super().__init__(orientation='vertical', **kwds)

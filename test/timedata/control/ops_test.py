@@ -3,7 +3,6 @@ from timedata.control.ops import Ops, OPS
 
 
 class OpsTest(unittest.TestCase):
-
     def test_empty(self):
         ops = Ops()
         self.assertEqual(str(ops), '')

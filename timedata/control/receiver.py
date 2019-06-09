@@ -11,6 +11,7 @@ class Receiver(abc.ABC):
     `set_project` must be called exactly once for each Receiver, and this must
     be before `receive` is ever called.
     """
+
     @abc.abstractmethod
     def set_project(self, project):
         pass

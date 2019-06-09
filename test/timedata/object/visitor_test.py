@@ -24,11 +24,9 @@ class VisitorTest(unittest.TestCase):
         self.assertEqual(results, POST)
 
 
-DATA = collections.OrderedDict((
-    ('foo', 'bar'),
-    ('baz', [0, True, None, 3.5]),
-    ('bing', {'bong': {}}),
-))
+DATA = collections.OrderedDict(
+    (('foo', 'bar'), ('baz', [0, True, None, 3.5]), ('bing', {'bong': {}}))
+)
 
 PRE = [
     (None, DATA),

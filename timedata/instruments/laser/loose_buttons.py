@@ -10,4 +10,5 @@ class LooseButtons(box_layout.BoxLayout):
         self.down_up = switch_button.SwitchButton('Down', 'Up')
 
         self.add_all(
-            self.blackout, 1 / 3, self.left_right, 1 / 3, self.down_up)
+            self.blackout, 1 / 3, self.left_right, 1 / 3, self.down_up
+        )

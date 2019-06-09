@@ -1,8 +1,10 @@
 import bs4, yaml, requests, sys
 
 
-_BASE = ('https://en.wikipedia.org/w/index.php?title=List_of_colors:'
-         '_{0}%E2%80%93{1}&action=edit')
+_BASE = (
+    'https://en.wikipedia.org/w/index.php?title=List_of_colors:'
+    '_{0}%E2%80%93{1}&action=edit'
+)
 PAGES = _BASE.format('A', 'F'), _BASE.format('G', 'M'), _BASE.format('N', 'Z')
 
 TEST_DATA = '\
@@ -33,7 +35,7 @@ def get_lines():
 def process_line(line):
     assert line.endswith(SUFFIX)
     assert line.startswith(PREFIX)
-    line = line[len(PREFIX):-len(SUFFIX)]
+    line = line[len(PREFIX) : -len(SUFFIX)]
 
     result = {}
     while line:

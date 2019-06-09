@@ -27,8 +27,8 @@ OTHER = {'type': 'other', 'channel': 32, 'thing': 'stuff'}
 class ExtractorTest(unittest.TestCase):
     def run_test(self, msg, expected, **kwds):
         md = extractor.Extractor(
-            keys_by_type=KEYS_BY_TYPE,
-            normalizers=NORMALIZERS, **kwds)
+            keys_by_type=KEYS_BY_TYPE, normalizers=NORMALIZERS, **kwds
+        )
 
         expected = expected and collections.OrderedDict(expected)
         self.assertEqual(md.extract(msg), expected)
@@ -38,7 +38,8 @@ class ExtractorTest(unittest.TestCase):
             ('channel', 1),
             ('type', 'note_on'),
             ('note', 32),
-            ('velocity', fractions.Fraction(96) / 127)]
+            ('velocity', fractions.Fraction(96) / 127),
+        ]
 
         self.run_test(C3, expected)
         self.run_test(C3, expected[1:], omit='channel')
@@ -49,6 +50,5 @@ class ExtractorTest(unittest.TestCase):
             self.run_test(msg, collections.OrderedDict(), accept=accept)
 
         self.run_test(
-            BC,
-            [('value', fractions.Fraction(10) / 127)],
-            accept=accept)
+            BC, [('value', fractions.Fraction(10) / 127)], accept=accept
+        )

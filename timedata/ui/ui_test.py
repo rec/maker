@@ -64,9 +64,11 @@ def test_switch_button():
 
 def test_notes_held():
     import math
+
     high = 14
-    held = notes_held.NotesHeld(high=high, columns=int(math.sqrt(high)),
-                                color=(0.5, 0.5, 0.5))
+    held = notes_held.NotesHeld(
+        high=high, columns=int(math.sqrt(high)), color=(0.5, 0.5, 0.5)
+    )
 
     def target():
         while True:

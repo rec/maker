@@ -39,16 +39,14 @@ class MidiTest:  # (unittest.TestCase): TODO
     routing = {
         'note_on': '.note_on',
         'note_off': '.note_off',
-        'control_change': {
-            '1': '.cc1',
-            '2': '.cc2',
-        },
+        'control_change': {'1': '.cc1', '2': '.cc2'},
         'pitchwheel': '.pitch',
     }
 
     def run_test(self, msgs, expected, routing=None, **kwds):
-        with mock.patch('timedata.control.midi.mido',
-                        return_value=FakeMido(msgs)):
+        with mock.patch(
+            'timedata.control.midi.mido', return_value=FakeMido(msgs)
+        ):
 
             class Root:
                 pass

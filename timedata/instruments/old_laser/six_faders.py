@@ -8,6 +8,7 @@ class SixFaders:
         channels = list(constants.Channels)[2:]
         for i, channel in enumerate(channels):
             fader = abs_lfo_fader.AbsLfoFader(
-                self, channel.pretty_string(), print)
+                self, channel.pretty_string(), print
+            )
             # fader.pack(side=tk.LEFT)
             self.faders.append(fader)

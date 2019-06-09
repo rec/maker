@@ -8,8 +8,15 @@ class Extractor:
     `type` key of each message.
     """
 
-    def __init__(self, omit=None, normalizers=None, keys_by_type=None,
-                 accept=None, reject=None, auto_omit=True):
+    def __init__(
+        self,
+        omit=None,
+        normalizers=None,
+        keys_by_type=None,
+        accept=None,
+        reject=None,
+        auto_omit=True,
+    ):
         """
         Arguments
 
@@ -38,6 +45,7 @@ class Extractor:
             request data for channel=1, type=note_on then you probably don't
             want to see channel=1, type=note_on with each message.
         """
+
         def to_set(x):
             if x is None:
                 return set()
@@ -62,10 +70,12 @@ class Extractor:
                 if isinstance(v, str):
                     v = [v]
                 self.keys_by_type[k] = tuple(
-                    i for i in v if i not in self.omit)
+                    i for i in v if i not in self.omit
+                )
 
     def extract(self, msg):
         """Yield an ordered dictionary if msg['type'] is in keys_by_type."""
+
         def normal(key):
             v = msg.get(key)
             if v is None:

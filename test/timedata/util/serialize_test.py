@@ -1,7 +1,7 @@
 import unittest
 from timedata.util import serialize
 
-TESTS = 'a', ['b', 1], True, None, {},
+TESTS = 'a', ['b', 1], True, None, {}
 
 
 class SerializeTest(unittest.TestCase):

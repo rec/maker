@@ -1,6 +1,6 @@
 import weakref
-from .. address.address import number, Address
-from . receiver import Receiver
+from ..address.address import number, Address
+from .receiver import Receiver
 
 
 class Editor(Receiver):

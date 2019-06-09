@@ -1,6 +1,6 @@
-from . ops import Ops
-from . editor import Editor
-from . receiver import Receiver
+from .ops import Ops
+from .editor import Editor
+from .receiver import Receiver
 
 
 class Action(Receiver):

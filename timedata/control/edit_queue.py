@@ -1,5 +1,5 @@
 import functools, queue, traceback
-from .. util import log
+from ..util import log
 
 
 class EditQueue(queue.Queue):

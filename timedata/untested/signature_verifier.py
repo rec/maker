@@ -1,5 +1,6 @@
 import inspect, functools
 from inspect import Parameter
+
 ARGS = '_args'
 KWDS = '_kwds'
 
@@ -31,10 +32,13 @@ class SignatureVerifier:
         elif len(cargs) > len(po) + len(pok):
             errors.append(TOO_MANY_PO % (len(po) + len(po), len(cargs)))
         else:
-            cargs = cargs[len(po):]
+            cargs = cargs[len(po) :]
 
         return (
-            errors, warnings, functools.partial(self.function, *cargs, **kwds))
+            errors,
+            warnings,
+            functools.partial(self.function, *cargs, **kwds),
+        )
 
 
 NOT_ENOUGH_PO = 'Needed at least %d positional parameters, got %d'

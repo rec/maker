@@ -1,17 +1,23 @@
 import threading
-from . extractor import Extractor
-from . routing import ActionList, Routing
+from .extractor import Extractor
+from .routing import ActionList, Routing
 
 # from .. util.log_errors import LogErrors
-from .. util import log, runnable
+from ..util import log, runnable
 
 
 class Control(runnable.Runnable):
     DEFAULT = {'datatype': ActionList}
 
-    def __init__(self, routing=None, default=None, errors='raise',
-                 python_path='bibliopixel.control', verbose=False,
-                 pre_routing=None):
+    def __init__(
+        self,
+        routing=None,
+        default=None,
+        errors='raise',
+        python_path='bibliopixel.control',
+        verbose=False,
+        pre_routing=None,
+    ):
         """
         :param Address pre_routing: This Address is set with with the message
             after the message is received and converted, but before it is
@@ -64,8 +70,12 @@ class Control(runnable.Runnable):
         if receiver:
             receiver.receive(msg)
             if self.verbose:
-                log.info('Routed message %s (%s) to %s', str_msg[:128], msg,
-                         repr(receiver))
+                log.info(
+                    'Routed message %s (%s) to %s',
+                    str_msg[:128],
+                    msg,
+                    repr(receiver),
+                )
 
     def _convert(self, msg):
         """
@@ -90,6 +100,7 @@ class Control(runnable.Runnable):
 
 class ControlLoop:
     """Mixin class for looping controls"""
+
     def _receive_all_messages(self):
         for msg in self.messages():
             self.receive(msg)

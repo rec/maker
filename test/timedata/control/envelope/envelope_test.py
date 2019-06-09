@@ -17,8 +17,19 @@ class EnvelopeTest(unittest.TestCase):
 
     def test_offset_and_scale(self):
         env = envelope.Linear(offset=0.05, scale=2)
-        expected = [0.05, 0.25, 0.45, 0.65, 0.85,
-                    1.05, 1.25, 1.45, 1.65, 1.85, 0.05]
+        expected = [
+            0.05,
+            0.25,
+            0.45,
+            0.65,
+            0.85,
+            1.05,
+            1.25,
+            1.45,
+            1.65,
+            1.85,
+            0.05,
+        ]
         function_tester(env, self, expected)
 
     def test_period(self):
@@ -28,8 +39,17 @@ class EnvelopeTest(unittest.TestCase):
 
     def test_symmetry(self):
         env = envelope.Linear(symmetry=Fraction(1) / 3)
-        expected = [0 / 32, 6 / 32, 12 / 32, 17 / 32, 20 / 32,
-                    23 / 32, 26 / 32, 29 / 32, 0 / 32]
+        expected = [
+            0 / 32,
+            6 / 32,
+            12 / 32,
+            17 / 32,
+            20 / 32,
+            23 / 32,
+            26 / 32,
+            29 / 32,
+            0 / 32,
+        ]
         function_tester(env, self, expected)
 
     def test_sine(self):
@@ -56,8 +76,16 @@ class EnvelopeTest(unittest.TestCase):
         expected += [1] + expected[::-1]
         function_tester(env, self, expected)
 
-    def _random(self, env, min_mean, max_mean, min_stdev, max_stdev,
-                test_count=3, sample_count=300):
+    def _random(
+        self,
+        env,
+        min_mean,
+        max_mean,
+        min_stdev,
+        max_stdev,
+        test_count=3,
+        sample_count=300,
+    ):
         mmin, smin, mmax, smax = 100, 100, 0, 0
         for i in range(test_count):
             values = [env(0) for i in range(sample_count)]

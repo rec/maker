@@ -33,7 +33,7 @@ class EditorTest(unittest.TestCase):
         qa = Editor('baz.bar.foo.foo')
         qa.set_project(test)
         self.assertEqual(qa.get(), 12)
-        qa.receive(('hello', ))
+        qa.receive(('hello',))
         self.assertEqual(qa.get(), 'hello')
 
     def test_with_queue(self):

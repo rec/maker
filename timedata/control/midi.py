@@ -1,9 +1,10 @@
 import fractions
 from . import control
-from .. util import log
+from ..util import log
 
 try:
     import mido
+
     MESSAGE_TYPES = set(s['type'] for s in mido.messages.specs.SPECS)
 
 except:
@@ -24,20 +25,13 @@ class Midi(control.ExtractedLoop):
     EXTRACTOR = {
         # There are more mido message types that we haven't used yet.
         'keys_by_type': {
-            'aftertouch': (
-                'port', 'channel', 'type', 'value'),
-            'control_change': (
-                'port', 'channel', 'type', 'control', 'value'),
-            'note_off': (
-                'port', 'channel', 'type', 'note', 'velocity'),
-            'note_on': (
-                'port', 'channel', 'type', 'note', 'velocity'),
-            'pitchwheel': (
-                'port', 'channel', 'type', 'pitch'),
-            'program_change': (
-                'port', 'channel', 'type', 'program'),
+            'aftertouch': ('port', 'channel', 'type', 'value'),
+            'control_change': ('port', 'channel', 'type', 'control', 'value'),
+            'note_off': ('port', 'channel', 'type', 'note', 'velocity'),
+            'note_on': ('port', 'channel', 'type', 'note', 'velocity'),
+            'pitchwheel': ('port', 'channel', 'type', 'pitch'),
+            'program_change': ('port', 'channel', 'type', 'program'),
         },
-
         # Some numeric fields (channel, control, program and note) don't get
         # normalized because they are basically names.
         'normalizers': {
@@ -45,7 +39,6 @@ class Midi(control.ExtractedLoop):
             'value': lambda x: fractions.Fraction(x) / 127,
             'velocity': lambda x: fractions.Fraction(x) / 127,
         },
-
         'omit': ('port', 'channel'),
     }
 
@@ -75,8 +68,11 @@ class Midi(control.ExtractedLoop):
             return
 
         port_names = ', '.join('"%s"' % p.name for p in ports)
-        log.info('Starting to listen for MIDI on port%s %s',
-                 '' if len(ports) == 1 else 's', port_names)
+        log.info(
+            'Starting to listen for MIDI on port%s %s',
+            '' if len(ports) == 1 else 's',
+            port_names,
+        )
         for port, msg in mido.ports.MultiPort(ports, yield_ports=True):
             mdict = dict(vars(msg), port=port)
 

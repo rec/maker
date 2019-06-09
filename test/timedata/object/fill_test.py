@@ -13,10 +13,7 @@ class BazSimple(Bar):
 
 
 class Baz(Bar):
-    TIMEDATA_ATTRIBUTES = {
-        'foo': True,
-        'bar': lambda x: 1000 + x
-    }
+    TIMEDATA_ATTRIBUTES = {'foo': True, 'bar': lambda x: 1000 + x}
 
 
 class FillTest(unittest.TestCase):
@@ -33,8 +30,7 @@ class FillTest(unittest.TestCase):
         self.assertEqual(a['_object'].bar, 2)
 
     def test_attributes_simple(self):
-        a = {'_': __name__ + '.BazSimple',
-             'foo': 'foo', 'bar': 2}
+        a = {'_': __name__ + '.BazSimple', 'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=BazSimple, _object=BazSimple())
         fill.fill(a)
         self.assertEqual(a, expected)
@@ -42,8 +38,7 @@ class FillTest(unittest.TestCase):
         self.assertEqual(a['_object'].bar, 2)
 
     def test_attributes(self):
-        a = {'_': __name__ + '.Baz',
-             'foo': 'foo', 'bar': 2}
+        a = {'_': __name__ + '.Baz', 'foo': 'foo', 'bar': 2}
         expected = dict(a, _class=Baz, _object=Baz())
         fill.fill(a)
         self.assertEqual(a, expected)

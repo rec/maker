@@ -36,6 +36,7 @@ def visit(root, visitor, pre=False, get_children=simple_children):
           pairs from a node
 
     """
+
     def recurse(parent, key, node):
         pre and visitor(parent, key, node)
 

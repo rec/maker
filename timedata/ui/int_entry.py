@@ -4,7 +4,7 @@ import math
 
 
 class IntEntry(TextInput):
-    value = NumericProperty(0.)
+    value = NumericProperty(0.0)
 
     def __init__(self, low=-math.inf, high=math.inf, **kwds):
         if low >= 10:
@@ -43,7 +43,7 @@ class IntEntry(TextInput):
 
 
 class IntEntry2(TextInput):
-    value = NumericProperty(0.)
+    value = NumericProperty(0.0)
 
     def __init__(self, low=-math.inf, high=math.inf, **kwds):
         if low >= 10:

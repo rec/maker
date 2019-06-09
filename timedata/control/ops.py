@@ -101,7 +101,7 @@ def _two_ops():
 def _join(items, indent='    ', per_line=8):
     lines = []
     for i in range(0, len(items), 8):
-        lines.append(indent + ', '.join(items[i:i + 8]) + '\n')
+        lines.append(indent + ', '.join(items[i : i + 8]) + '\n')
     return ''.join(lines)
 
 
@@ -137,7 +137,8 @@ ONE_OPERATORS = (
     'sqrt',
     'tan',
     'tanh',
-    'trunc')
+    'trunc',
+)
 
 OPS = [{k: getattr(math, k) for k in ONE_OPERATORS}, _two_ops()]
 
@@ -149,4 +150,6 @@ One argument operators are:
 
 Two argument operators are:
    %s
-""" % tuple(_join(sorted(o)) for o in OPS)
+""" % tuple(
+    _join(sorted(o)) for o in OPS
+)

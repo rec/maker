@@ -3,7 +3,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ListProperty, NumericProperty, StringProperty
 from kivy.lang import Builder
 
-Builder.load_string('''
+Builder.load_string(
+    '''
 #-------------------------------
 # Knob class
 #  Properties are: text, values, value
@@ -43,7 +44,8 @@ Builder.load_string('''
         size_hint_y: None
         color: [144/255, 228/255 , 1, 1]
 #-------------------------------
-''')
+'''
+)
 
 
 class CircleKnob(BoxLayout):
@@ -51,7 +53,9 @@ class CircleKnob(BoxLayout):
     values = ListProperty([str(i) for i in range(101)])
     value = NumericProperty(0)
     addresses = ListProperty([])
-    mouse_set_value = NumericProperty(0)  # set when a mouse moves, triggers sending a midi msg
+    mouse_set_value = NumericProperty(
+        0
+    )  # set when a mouse moves, triggers sending a midi msg
     right_click_value = NumericProperty(0)
     _scroll_direction = {'scrollup': 1, 'scrolldown': -1}
 
@@ -67,16 +71,27 @@ class CircleKnob(BoxLayout):
     def on_touch_move(self, touch):
         if touch.grab_current is self and touch.dy and self.disabled is False:
             #  sorted(min, val, max)[1] works to clamp val to floor or ceiling
-            self.value = (sorted((0, self.value + int(touch.dy), len(self.values)-1))[1])
+            self.value = sorted(
+                (0, self.value + int(touch.dy), len(self.values) - 1)
+            )[1]
             self.mouse_set_value += 1
             return True
         return False
 
     def on_touch_up(self, touch):
-        if touch.is_mouse_scrolling and touch.grab_current is self and self.disabled is False:
+        if (
+            touch.is_mouse_scrolling
+            and touch.grab_current is self
+            and self.disabled is False
+        ):
             # sorted(min, val, max)[1] works to clamp val to floor or ceiling
-            self.value = (sorted((0, self.value + self._scroll_direction[touch.button],
-                                  len(self.values) - 1))[1])
+            self.value = sorted(
+                (
+                    0,
+                    self.value + self._scroll_direction[touch.button],
+                    len(self.values) - 1,
+                )
+            )[1]
             self.mouse_set_value += 1
             return True
         elif touch.grab_current is self:
@@ -154,10 +169,10 @@ BoxLayout:
             text: "Rate"
     '''
     from kivy.config import Config
+
     Config.set('input', 'mouse', 'mouse,disable_multitouch')
 
     class CircleKnobApp(App):
-
         def build(self):
             return Builder.load_string(kv_test)
 

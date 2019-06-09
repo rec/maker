@@ -2,6 +2,7 @@ class Segments(list):
     """
     A list of [level, time] pairs.
     """
+
     def __init__(self, segments=(), length=None):
         super().__init__()
         self.base_value = 0

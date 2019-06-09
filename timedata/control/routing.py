@@ -1,6 +1,6 @@
-from .. util import flatten
-from . action import ActionList
-from . receiver import Receiver
+from ..util import flatten
+from .action import ActionList
+from .receiver import Receiver
 
 
 class Routing(Receiver):
@@ -42,6 +42,7 @@ class Routing(Receiver):
 
     def set_project(self, project):
         """Set the base project for routing."""
+
         def visit(x):
             # Try to set_project, then recurse through any values()
             set_project = getattr(x, 'set_project', None)

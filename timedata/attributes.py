@@ -55,8 +55,9 @@ def _check(message, function, *args, **kwds):
     # All the keyword-only arguments need to be in kwds
     missing = set(p.name for p in parameters[keyword_only:]) - set(kwds)
     if missing:
-        fail('Missing required keyword arguments: %s',
-             ' '.join(sorted(missing)))
+        fail(
+            'Missing required keyword arguments: %s', ' '.join(sorted(missing))
+        )
 
     unknown = set(kwds) - set(p.name for p in parameters[required:])
     if unknown:

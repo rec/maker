@@ -1,6 +1,6 @@
 import getpass, platform, sys
-from .. util import log
-from . control import ExtractedControl
+from ..util import log
+from .control import ExtractedControl
 
 # See https://stackoverflow.com/questions/42603000
 DARWIN_ROOT_WARNING = """
@@ -26,6 +26,7 @@ except ImportError:
     pynput = Listener = None
 
 else:
+
     class Listener(pynput.keyboard.Listener):
         def join(self, timeout=None):
             # join() on pynput.keyboard.Listener waits on a queue...
@@ -39,14 +40,8 @@ def keyname(key):
 
 class Keyboard(ExtractedControl):
     EXTRACTOR = {
-        'keys_by_type': {
-            'press': ['type', 'key'],
-            'release': ['type', 'key'],
-        },
-
-        'normalizers': {
-            'key': keyname,
-        },
+        'keys_by_type': {'press': ['type', 'key'], 'release': ['type', 'key']},
+        'normalizers': {'key': keyname},
     }
 
     def _press(self, key):
