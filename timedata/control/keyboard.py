@@ -1,6 +1,8 @@
-import getpass, platform, sys
 from ..util import log
 from .control import ExtractedControl
+import getpass
+import platform
+import sys
 
 # See https://stackoverflow.com/questions/42603000
 DARWIN_ROOT_WARNING = """

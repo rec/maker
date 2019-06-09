@@ -1,5 +1,6 @@
-import math, random
 from . import segments as _segments
+import math
+import random
 
 ENVELOPE_PATH = 'bibliopixel.control.envelope.functions'
 

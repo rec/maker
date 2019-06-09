@@ -1,7 +1,14 @@
-import time, threading, random
+from . import bang
+from . import int_entry
+from . import int_slider
+from . import notes_held
+from . import selector
+from . import switch_button
 from kivy.app import App
-from . import bang, switch_button, notes_held, selector, int_entry, int_slider
 from timedata.instruments.laser import constants
+import random
+import threading
+import time
 
 
 class UIApp(App):

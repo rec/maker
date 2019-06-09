@@ -1,5 +1,7 @@
-import collections, fractions, unittest
 from timedata.control import extractor
+import collections
+import fractions
+import unittest
 
 KEYS_BY_TYPE = {
     'note_on': ('channel', 'type', 'note', 'velocity'),

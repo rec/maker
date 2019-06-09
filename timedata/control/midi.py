@@ -7,7 +7,7 @@ try:
 
     MESSAGE_TYPES = set(s['type'] for s in mido.messages.specs.SPECS)
 
-except:
+except Exception:
     mido = None
     MESSAGE_TYPES = set()
 

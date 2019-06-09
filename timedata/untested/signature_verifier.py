@@ -1,5 +1,6 @@
-import inspect, functools
 from inspect import Parameter
+import functools
+import inspect
 
 ARGS = '_args'
 KWDS = '_kwds'

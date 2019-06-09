@@ -1,6 +1,7 @@
-import math, threading
-from kivy.uix.widget import Widget
 from kivy import graphics
+from kivy.uix.widget import Widget
+import math
+import threading
 
 PADDING = 4
 

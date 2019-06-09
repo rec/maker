@@ -1,5 +1,6 @@
+import threading
+import traceback
 from . import log
-import threading, traceback
 
 
 class Runnable:
@@ -40,7 +41,7 @@ class Runnable:
         try:
             while not self.stop_event.is_set():
                 self.run_once()
-        except:
+        except Exception:
             self.stop_event.set()
             log.error('Exception at %s: \n%s', self, traceback.format_exc())
 

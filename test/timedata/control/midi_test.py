@@ -1,7 +1,8 @@
-import fractions, time
-from timedata.control import midi
 from argparse import Namespace
+from timedata.control import midi
 from unittest import mock
+import fractions
+import time
 
 C3 = Namespace(type='note_on', note=32, channel=1, velocity=96)
 C3_ZERO = Namespace(type='note_on', note=32, channel=1, velocity=0)

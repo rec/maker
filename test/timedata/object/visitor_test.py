@@ -1,5 +1,6 @@
-import collections, unittest
 from timedata.object import visitor
+import collections
+import unittest
 
 
 class VisitorTest(unittest.TestCase):

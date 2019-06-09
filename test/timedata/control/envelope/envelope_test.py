@@ -1,7 +1,9 @@
-import math, statistics, unittest
 from fractions import Fraction
-from timedata.control.envelope import envelope
 from test.timedata.control.envelope.segments_test import function_tester
+from timedata.control.envelope import envelope
+import math
+import statistics
+import unittest
 
 
 class EnvelopeTest(unittest.TestCase):

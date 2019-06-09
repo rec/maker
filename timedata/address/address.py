@@ -35,7 +35,7 @@ from . import generate, segment
 def number(s):
     try:
         return json.loads(s)
-    except:
+    except Exception:
         return s.strip()
 
 
@@ -52,7 +52,7 @@ class Address:
 
         try:
             self.segments = list(generate.generate(name))
-        except:
+        except Exception:
             raise ValueError('%s is not a legal address' % desc)
 
         if not (self.segments and assignment):

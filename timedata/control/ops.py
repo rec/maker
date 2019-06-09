@@ -26,7 +26,8 @@ returns sqrt(1 + 0.5 * x)
 
 """
 
-import math, operator
+import math
+import operator
 
 
 class Op:

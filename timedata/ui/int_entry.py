@@ -38,7 +38,7 @@ class IntEntry(TextInput):
             return True
         try:
             return self.low <= int(text) <= self.high
-        except:
+        except Exception:
             pass
 
 
@@ -77,5 +77,5 @@ class IntEntry2(TextInput):
             return True
         try:
             return self.low <= int(text) <= self.high
-        except:
+        except Exception:
             pass

@@ -1,5 +1,7 @@
-import functools, loady, traceback
 from . import visitor
+import functools
+import loady
+import traceback
 
 OBJECT = '_object'
 CLASS = '_class'
@@ -26,7 +28,7 @@ def _errors(fn):
     def wrapper(parent, key, node):
         try:
             fn(parent, key, node)
-        except:
+        except Exception:
             if RAISE:
                 raise
 

@@ -1,4 +1,5 @@
-import bisect, enum
+import bisect
+import enum
 
 
 @enum.unique
